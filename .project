@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
+<<<<<<< HEAD
 	<name>XiangqiStudenthsadoyan</name>
 	<comment/>
 	<projects/>
@@ -7,6 +8,17 @@
 		<buildCommand>
 			<name>org.eclipse.jdt.core.javabuilder</name>
 			<arguments/>
+=======
+	<name>XiangqiStudentxxx</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+>>>>>>> refs/remotes/origin/master
 		</buildCommand>
 	</buildSpec>
 	<natures>
