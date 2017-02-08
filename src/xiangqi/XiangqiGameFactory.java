@@ -13,6 +13,8 @@
 package xiangqi;
 
 import xiangqi.common.*;
+import xiangstudenthsadoyan.AlphaXiangqiTestCases;
+import xiangstudenthsadoyan.versions.alphaxiangqi.AlphaXiangqiGame;
 
 /**
  * A simple factory object that creates the appropriate instance of a XiangqiGame.
@@ -27,6 +29,6 @@ public class XiangqiGameFactory
 	 */
 	public static XiangqiGame makeXiangqiGame(XiangqiGameVersion version)
 	{
-		return null;
+		return version == XiangqiGameVersion.ALPHA_XQ ? new AlphaXiangqiGame() : null;
 	}
 }
