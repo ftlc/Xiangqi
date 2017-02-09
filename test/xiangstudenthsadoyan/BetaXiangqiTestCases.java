@@ -100,4 +100,20 @@ public class BetaXiangqiTestCases {
         assertEquals(XiangqiPieceType.SOLDIER, soldier.getPieceType());
         assertEquals(XiangqiColor.BLACK, soldier.getColor());
     }
+
+    @Test //7
+    public void testInvalidCoordinateOutOfBounds() {
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(0, 1), XiangqiCoordinateImp.makeCoordinate(1, 1)));
+        assertEquals("OUT OF BOUNDS", game.getMoveMessage());
+
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(7, 0), XiangqiCoordinateImp.makeCoordinate(1, 1)));
+        assertEquals("OUT OF BOUNDS", game.getMoveMessage());
+
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(0, 0), XiangqiCoordinateImp.makeCoordinate(1, 7)));
+        assertEquals("OUT OF BOUNDS", game.getMoveMessage());
+
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(0, 0), XiangqiCoordinateImp.makeCoordinate(0, 1)));
+        assertEquals("OUT OF BOUNDS", game.getMoveMessage());
+    }
+
 }

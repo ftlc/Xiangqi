@@ -30,6 +30,7 @@ public class Board {
                 board.put(XiangqiCoordinateImp.makeCoordinate(1,5), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.RED));
                 board.put(XiangqiCoordinateImp.makeCoordinate(2,3), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
 
+                //Initialize Black pieces
                 board.put(XiangqiCoordinateImp.makeCoordinate(5,3), XiangqiPieceImp.makePiece(XiangqiPieceType.GENERAL, XiangqiColor.BLACK));
                 board.put(XiangqiCoordinateImp.makeCoordinate(5,1), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK));
                 board.put(XiangqiCoordinateImp.makeCoordinate(5,2), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK));
@@ -40,6 +41,12 @@ public class Board {
         }
     }
 
+    public boolean isInBounds(XiangqiCoordinate c) {
+        if(c.getFile() <= 0 || c.getRank() <= 0) {
+            return false;
+        }
+        return (c.getFile() < getNumFiles() && c.getRank() < getNumRanks());
+    }
     public int getNumFiles() {
         return numFiles;
     }

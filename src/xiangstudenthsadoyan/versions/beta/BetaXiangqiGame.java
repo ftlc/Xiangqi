@@ -10,11 +10,12 @@ import java.util.HashMap;
  */
 public class BetaXiangqiGame implements XiangqiGame {
     Board board;
+    String moveMessage;
+    private int movecount = 0;
+    private boolean valid;
     public BetaXiangqiGame(){
         board = Board.makeBoard(XiangqiGameVersion.BETA_XQ);
     }
-    private int movecount = 0;
-    private boolean valid;
 
     private boolean isValid(){
         return valid;
@@ -24,21 +25,26 @@ public class BetaXiangqiGame implements XiangqiGame {
     }
     @Override
     public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
-        if(destination.getRank() != 1 || destination.getFile() != 2 || source.getFile() != 1 || source.getRank() != 1){
+        if(!board.isInBounds(source) || !board.isInBounds(destination)){
             setValid(false);
+            setMoveMessage("OUT OF BOUNDS");
             return MoveResult.ILLEGAL;
         }
-        if(movecount == 0) {
-            movecount++;
-            return MoveResult.OK;
-        } else {
-            return MoveResult.RED_WINS;
-        }
+
+        return MoveResult.OK;
+    }
+
+    public void setMoveMessage(String moveMessage) {
+        this.moveMessage = moveMessage;
     }
 
     @Override
     public String getMoveMessage() {
-        return isValid() ? null : "Invalid Move";
+        if(isValid()) return null;
+
+        String temp = moveMessage;
+        moveMessage = "";
+        return temp;
     }
 
     @Override
