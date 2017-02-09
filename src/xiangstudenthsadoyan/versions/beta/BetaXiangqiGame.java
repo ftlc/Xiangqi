@@ -32,8 +32,12 @@ public class BetaXiangqiGame implements XiangqiGame {
             return MoveResult.ILLEGAL;
         }
 
-            return validateMove(source, destination) ? MoveResult.OK : MoveResult.ILLEGAL;
+            if(validateMove(source, destination)) {
 
+                return MoveResult.OK;
+            } else {
+                return MoveResult.ILLEGAL;
+            }
     }
 
     public boolean validateMove(XiangqiCoordinate source, XiangqiCoordinate destination) {

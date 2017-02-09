@@ -44,6 +44,9 @@ public class ValidateFactory {
                 validators.add(adjacentValidator);
                 validators.add(orthogonalValidator);
                 validators.add(inGeneralsPalaceValidator);
+            case CHARIOT:
+                validators.add(orthogonalValidator);
+                validators.add(differentXiangqiCoordinateImpValidator);
         }
 
         return validators;

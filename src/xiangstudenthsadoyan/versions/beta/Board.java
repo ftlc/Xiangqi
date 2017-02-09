@@ -1,5 +1,6 @@
 package xiangstudenthsadoyan.versions.beta;
 
+import com.sun.org.apache.bcel.internal.generic.IXOR;
 import xiangqi.XiangqiGameFactory;
 import xiangqi.common.*;
 import xiangstudenthsadoyan.versions.beta.*;
@@ -41,6 +42,9 @@ public class Board {
         }
     }
 
+  //  public MoveResult movePiece(XiangqiCoordinate from, XiangqiCoordinate to){
+  //      XiangqiPiece
+  //  }
     public boolean isInBounds(XiangqiCoordinate c) {
         if(c.getFile() <= 0 || c.getRank() <= 0) {
             return false;

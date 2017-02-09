@@ -179,7 +179,20 @@ public class BetaXiangqiTestCases {
         assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1, 2), XiangqiCoordinateImp.makeCoordinate(2, 1)));
         assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(5, 2), XiangqiCoordinateImp.makeCoordinate(4, 1)));
         assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1,3), XiangqiCoordinateImp.makeCoordinate(1, 2)));
+    }
 
+
+    @Test
+    public void validateIllegalChariotMove(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1,1), XiangqiCoordinateImp.makeCoordinate(1, 1)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1,1), XiangqiCoordinateImp.makeCoordinate(2, 2)));
+    }
+
+    @Test
+    public void validateLegalChariotMove(){
+        assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1,1), XiangqiCoordinateImp.makeCoordinate(3, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(5,5), XiangqiCoordinateImp.makeCoordinate(3, 5)));
+     //   assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(3,1), XiangqiCoordinateImp.makeCoordinate(3, 3)));
     }
 
 
