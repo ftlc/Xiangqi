@@ -37,6 +37,9 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
     public boolean isOrthogonal(XiangqiCoordinate c2){
         return (getRank() == c2.getRank() || getFile() == c2.getFile());
     }
+    public boolean isDiagonallyAdjascent(XiangqiCoordinate c2){
+        return isDiagonal(c2) && (distanceTo(c2) == 2);
+    }
 
     public boolean isDiagonal(XiangqiCoordinate c2){
         return (Math.abs(getRank() - c2.getRank()) == Math.abs(getFile() - c2.getFile()));

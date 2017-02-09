@@ -2,11 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1d69dfc-9681-4570-9709-2857339debe7" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.classpath" afterPath="$PROJECT_DIR$/.classpath" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java" afterPath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/ValidateFactory.java" afterPath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/ValidateFactory.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiCoordinateImp.java" afterPath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiCoordinateImp.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiPieceImp.java" afterPath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiPieceImp.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java" afterPath="$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -18,13 +18,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/Xiangqi$BetaXiangqiTestCases.coverage" NAME="BetaXiangqiTestCases Coverage Results" MODIFIED="1486658146924" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/Xiangqi$BetaXiangqiTestCases.coverage" NAME="BetaXiangqiTestCases Coverage Results" MODIFIED="1486661542658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>xiangstudenthsadoyan.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/Xiangqi$AlphaXiangqiTestCases.coverage" NAME="AlphaXiangqiTestCases Coverage Results" MODIFIED="1486530011367" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>xiangstudenthsadoyan.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/Xiangqi$All_in_XiangqiStudenthsadoyan.coverage" NAME="All in XiangqiStudenthsadoyan Coverage Results" MODIFIED="1486658386777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/Xiangqi$All_in_XiangqiStudenthsadoyan.coverage" NAME="All in XiangqiStudenthsadoyan Coverage Results" MODIFIED="1486661555217" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -34,29 +34,19 @@
     <favorites_list name="Xiangqi" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.50593823">
+    <splitter split-orientation="horizontal" split-proportion="0.448442">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="600">
           <file leaf-file-name="BetaXiangqiGame.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="260">
-                  <caret line="41" column="16" lean-forward="false" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+                <state relative-caret-position="597">
+                  <caret line="59" column="40" lean-forward="false" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#450#451#0" expanded="true" />
                     <element signature="e#517#518#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="XiangqiPieceImp.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiPieceImp.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="252">
-                  <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -68,25 +58,40 @@
           <file leaf-file-name="XiangqiCoordinateImp.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiCoordinateImp.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1152">
-                  <caret line="46" column="54" lean-forward="false" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
+                <state relative-caret-position="777">
+                  <caret line="40" column="55" lean-forward="false" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#1264#1265#0" expanded="true" />
-                    <element signature="e#1340#1341#0" expanded="true" />
+                    <element signature="e#1123#1124#0" expanded="true" />
+                    <element signature="e#1185#1186#0" expanded="true" />
+                    <element signature="e#1390#1391#0" expanded="true" />
+                    <element signature="e#1466#1467#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ValidateFactory.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ValidateFactory.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/ValidateFactory.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1008">
-                  <caret line="34" column="52" lean-forward="false" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
+                <state relative-caret-position="1151">
+                  <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#1633#1690#0" expanded="true" />
+                    <element signature="e#1761#1818#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="XiangqiPieceImp.java" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiPieceImp.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="612">
+                  <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#1008#1009#0" expanded="true" />
+                    <element signature="e#1051#1052#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -95,8 +100,8 @@
           <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/Board.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="470">
-                  <caret line="47" column="15" lean-forward="false" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
+                <state relative-caret-position="635">
+                  <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -104,11 +109,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BetaXiangqiTestCases.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="BetaXiangqiTestCases.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="686">
-                  <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+                <state relative-caret-position="871">
+                  <caret line="157" column="4" lean-forward="false" selection-start-line="157" selection-start-column="4" selection-end-line="157" selection-end-column="4" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -159,13 +164,13 @@
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/alphaxiangqi/XiangwiPieceImp.java" />
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/alphaxiangqi/AlphaXiangqiGame.java" />
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/alphaxiangqi/XiangqiPieceImp.java" />
-        <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiPieceImp.java" />
         <option value="$PROJECT_DIR$/src/xiangqi/XiangqiGameFactory.java" />
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/Board.java" />
-        <option value="$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java" />
+        <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java" />
+        <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiPieceImp.java" />
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiCoordinateImp.java" />
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/ValidateFactory.java" />
-        <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java" />
+        <option value="$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java" />
       </list>
     </option>
   </component>
@@ -844,8 +849,8 @@
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="JUnit.BetaXiangqiTestCases" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.BetaXiangqiTestCases.validateLegalPawnMove" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.All in XiangqiStudenthsadoyan" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.All in XiangqiStudenthsadoyan" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.BetaXiangqiTestCases.validateLegalPawnMove" />
         <item index="3" class="java.lang.String" itemvalue="JUnit.AlphaXiangqiTestCases" />
         <item index="4" class="java.lang.String" itemvalue="Arquillian JUnit.xiangstudenthsadoyan in XiangqiStudenthsadoyan" />
       </list>
@@ -865,7 +870,7 @@
       <option name="presentableId" value="Default" />
       <updated>1486426936586</updated>
       <workItem from="1486426941241" duration="1180000" />
-      <workItem from="1486428182479" duration="23177000" />
+      <workItem from="1486428182479" duration="27407000" />
     </task>
     <task id="LOCAL-00001" summary="ReadMe">
       <created>1486428224539</created>
@@ -902,78 +907,85 @@
       <option name="project" value="LOCAL" />
       <updated>1486657807415</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Red Pawn Validators">
+      <created>1486661532192</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1486661532192</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="All_in_XiangqiStudenthsadoyan - 2017.02.09 at 11h 39m 39s.xml">
-      <configuration name="All in XiangqiStudenthsadoyan" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_XiangqiStudenthsadoyan - 2017.02.09 at 11h 39m 47s.xml">
-      <configuration name="All in XiangqiStudenthsadoyan" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="All_in_XiangqiStudenthsadoyan - 2017.02.09 at 11h 40m 54s.xml">
-      <configuration name="All in XiangqiStudenthsadoyan" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 11h 41m 05s.xml">
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 13m 26s.xml">
       <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 12h 21m 21s.xml">
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 22m 00s.xml">
       <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 12h 27m 13s.xml">
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 22m 54s.xml">
       <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 12h 29m 19s.xml">
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 23m 18s.xml">
       <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 12h 29m 51s.xml">
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 23m 36s.xml">
       <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BetaXiangqiTestCases_validateLegalPawnMove - 2017.02.09 at 12h 27m 41s.xml">
-      <configuration name="BetaXiangqiTestCases.validateLegalPawnMove" configurationId="JUnit" />
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 31m 15s.xml">
+      <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="BetaXiangqiTestCases_validateLegalPawnMove - 2017.02.09 at 12h 29m 14s.xml">
-      <configuration name="BetaXiangqiTestCases.validateLegalPawnMove" configurationId="JUnit" />
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 33m 06s.xml">
+      <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 33m 43s.xml">
+      <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 36m 57s.xml">
+      <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="BetaXiangqiTestCases - 2017.02.09 at 13h 38m 12s.xml">
+      <configuration name="BetaXiangqiTestCases" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24357000" />
+    <option name="totallyTimeSpent" value="28587000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="35" width="3840" height="2059" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956472" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956472" sideWeight="0.5010678" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2357264" sideWeight="0.49893218" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21329418" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24986653" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28321084" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956472" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25325042" sideWeight="0.49893218" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995194" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16898024" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956472" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -988,7 +1000,8 @@
     <MESSAGE value="Alpha" />
     <MESSAGE value="Starting Board Setup" />
     <MESSAGE value="Test Invalid Coordiantes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test Invalid Coordiantes" />
+    <MESSAGE value="Red Pawn Validators" />
+    <option name="LAST_COMMIT_MESSAGE" value="Red Pawn Validators" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1137,20 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/alphaxiangqi/XiangqiPieceImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="936">
-          <caret line="26" column="24" lean-forward="false" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#694#695#0" expanded="true" />
-            <element signature="e#722#723#0" expanded="true" />
-            <element signature="e#782#783#0" expanded="true" />
-            <element signature="e#814#815#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/xiangqi/common/XiangqiColor.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -1185,24 +1184,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiPieceImp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="9" column="13" lean-forward="false" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/Board.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="47" column="15" lean-forward="false" selection-start-line="47" selection-start-column="15" selection-end-line="47" selection-end-column="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/AlphaXiangqiTestCases.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2124">
@@ -1211,47 +1192,82 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java">
+    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/alphaxiangqi/XiangqiPieceImp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="686">
-          <caret line="120" column="0" lean-forward="false" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        <state relative-caret-position="864">
+          <caret line="26" column="24" lean-forward="false" selection-start-line="26" selection-start-column="24" selection-end-line="26" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#782#783#0" expanded="true" />
+            <element signature="e#814#815#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiCoordinateImp.java">
+    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1152">
-          <caret line="46" column="54" lean-forward="false" selection-start-line="46" selection-start-column="54" selection-end-line="46" selection-end-column="54" />
+        <state relative-caret-position="635">
+          <caret line="40" column="9" lean-forward="true" selection-start-line="40" selection-start-column="9" selection-end-line="40" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1264#1265#0" expanded="true" />
-            <element signature="e#1340#1341#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/ValidateFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1008">
-          <caret line="34" column="52" lean-forward="false" selection-start-line="34" selection-start-column="52" selection-end-line="34" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1633#1690#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="41" column="16" lean-forward="false" selection-start-line="41" selection-start-column="16" selection-end-line="41" selection-end-column="16" />
+        <state relative-caret-position="597">
+          <caret line="59" column="40" lean-forward="false" selection-start-line="59" selection-start-column="40" selection-end-line="59" selection-end-column="40" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#450#451#0" expanded="true" />
             <element signature="e#517#518#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiPieceImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding>
+            <element signature="e#1008#1009#0" expanded="true" />
+            <element signature="e#1051#1052#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/XiangqiCoordinateImp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="777">
+          <caret line="40" column="55" lean-forward="false" selection-start-line="40" selection-start-column="55" selection-end-line="40" selection-end-column="55" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1123#1124#0" expanded="true" />
+            <element signature="e#1185#1186#0" expanded="true" />
+            <element signature="e#1390#1391#0" expanded="true" />
+            <element signature="e#1466#1467#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/ValidateFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1151">
+          <caret line="43" column="13" lean-forward="false" selection-start-line="43" selection-start-column="13" selection-end-line="43" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1761#1818#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="871">
+          <caret line="157" column="4" lean-forward="false" selection-start-line="157" selection-start-column="4" selection-end-line="157" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

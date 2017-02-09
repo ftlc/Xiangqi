@@ -1,8 +1,5 @@
 package xiangstudenthsadoyan.versions.beta;
 
-import xiangqi.common.XiangqiCoordinate;
-import xiangqi.common.XiangqiPiece;
-
 import java.util.*;
 import java.util.function.BiPredicate;
 
@@ -24,7 +21,10 @@ public class ValidateFactory {
     private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> moveForwardValidator =
             (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isForward(c2);
 
-    public static List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> makeValidators(XiangqiPiece piece){
+    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> diagonallyAdjascentValidator =
+            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isDiagonallyAdjascent(c2);
+
+    public static List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> makeValidators(XiangqiPieceImp piece){
 
         List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> validators =
                 new LinkedList<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>>();
@@ -34,6 +34,14 @@ public class ValidateFactory {
                 validators.add(orthogonalValidator);
                 validators.add(moveForwardValidator);
                 break;
+            case ADVISOR:
+                validators.add(diagonallyAdjascentValidator);
+                validators.add(diagonalValidator);
+                break;
+         /*   case GENERAL:
+                validators.add(adjacentValidator);
+                validators.add(orthogonalValidator);
+           */
         }
 
         return validators;

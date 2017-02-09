@@ -17,6 +17,10 @@ public class XiangqiPieceImp implements XiangqiPiece {
     public static XiangqiPiece makePiece(XiangqiPieceType pieceType, XiangqiColor color){
         return new XiangqiPieceImp(pieceType, color);
     }
+
+    public static XiangqiPieceImp copyConstructor(XiangqiPiece toCopy){
+        return new XiangqiPieceImp(toCopy.getPieceType(), toCopy.getColor());
+    }
     @Override
     public XiangqiColor getColor() {
         return color;
@@ -25,5 +29,10 @@ public class XiangqiPieceImp implements XiangqiPiece {
     @Override
     public XiangqiPieceType getPieceType() {
         return pieceType;
+    }
+
+    @Override
+    public String toString(){
+        return pieceType.toString();
     }
 }

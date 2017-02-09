@@ -117,13 +117,45 @@ public class BetaXiangqiTestCases {
     }
 
     @Test //8
-    public void validateIllegalPawnMove(){
+    public void validateMoveOnEmptyLocation(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(2,2), XiangqiCoordinateImp.makeCoordinate(3, 3)));
+        assertEquals("No Piece At Source", game.getMoveMessage());
+    }
+    @Test //9
+    public void validateIllegalPawnMoves(){
         assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(2,3), XiangqiCoordinateImp.makeCoordinate(2, 4)));
-        assertEquals("Illegal Pawn Move", game.getMoveMessage());
+        assertEquals("Illegal Soldier Move", game.getMoveMessage());
+
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(2,3), XiangqiCoordinateImp.makeCoordinate(2, 3)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(2,3), XiangqiCoordinateImp.makeCoordinate(4, 3)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(2,3), XiangqiCoordinateImp.makeCoordinate(1, 3)));
     }
 
-    @Test //9
-    public void validateLegalPawnMove(){
+    @Test //10
+    public void validateLegalPawnMoveRed(){
         assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(2,3), XiangqiCoordinateImp.makeCoordinate(3, 3)));
     }
+
+    @Test
+    public void validateLegalPawnMoveBlack(){
+        assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(4,3), XiangqiCoordinateImp.makeCoordinate(3, 3)));
+    }
+
+    @Test
+    public void validateIllegalAdvisorMovesRed(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1,2), XiangqiCoordinateImp.makeCoordinate(1, 2)));
+        assertEquals("Illegal Advisor Move", game.getMoveMessage());
+
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1,2), XiangqiCoordinateImp.makeCoordinate(1, 3)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1,2), XiangqiCoordinateImp.makeCoordinate(2, 2)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1,2), XiangqiCoordinateImp.makeCoordinate(3, 4)));
+    }
+
+    @Test
+    public void validateLegalAdvisorMovesRed(){
+        assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(1, 2), XiangqiCoordinateImp.makeCoordinate(2, 1)));
+    }
+
+
+
 }

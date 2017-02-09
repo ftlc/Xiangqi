@@ -32,21 +32,40 @@ public class BetaXiangqiGame implements XiangqiGame {
             return MoveResult.ILLEGAL;
         }
 
+            return validateMove(source, destination) ? MoveResult.OK : MoveResult.ILLEGAL;
+
+    }
+
+    public boolean validateMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
         XiangqiCoordinateImp newSource = XiangqiCoordinateImp.copyConstructor(source);
         XiangqiCoordinateImp newDest = XiangqiCoordinateImp.copyConstructor(destination);
+
+        if(getPieceAt(source, XiangqiColor.RED).getPieceType() == XiangqiPieceType.NONE){
+            setMoveMessage("No Piece At Source");
+            return false;
+        }
+
+        if(getPieceAt(source, XiangqiColor.RED).getColor() == XiangqiColor.BLACK){
+            newSource = convertToBlack(newSource);
+            newDest = convertToBlack(newDest);
+        }
+
+        XiangqiPieceImp piece = XiangqiPieceImp.copyConstructor(board.getPieceAt(newSource));
         final List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> validators =
-                ValidateFactory.makeValidators(board.getPieceAt(source));
+                ValidateFactory.makeValidators(piece);
 
         for (BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> p : validators) {
             if(!p.test(newSource, newDest)) {
-                setMoveMessage("Illegal Pawn Move");
-                return MoveResult.ILLEGAL;
+                String pieceName = piece.toString();
+                setMoveMessage("Illegal " + pieceName + " Move");
+                return false;
             }
         }
 
-        return MoveResult.OK;
+        return true;
 
     }
+
 
     public void setMoveMessage(String moveMessage) {
         setValid(false);
@@ -79,5 +98,12 @@ public class BetaXiangqiGame implements XiangqiGame {
         return where;
     }
 
+    public XiangqiCoordinateImp convertToBlack(XiangqiCoordinateImp original){
+        int rank = board.getNumRanks() - original.getRank() + 1;
+        int file = board.getNumFiles() - original.getFile() + 1;
+        XiangqiCoordinate temp = XiangqiCoordinateImp.makeCoordinate(rank, file);
+        XiangqiCoordinateImp toReturn = XiangqiCoordinateImp.copyConstructor(temp);
+        return toReturn;
+    }
 
 }
