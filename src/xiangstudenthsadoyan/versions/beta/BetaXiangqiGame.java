@@ -1,9 +1,11 @@
 package xiangstudenthsadoyan.versions.beta;
 
 import xiangqi.common.*;
-import xiangstudenthsadoyan.versions.alphaxiangqi.XiangqiPieceImp;
+import xiangstudenthsadoyan.versions.beta.XiangqiPieceImp;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.function.BiPredicate;
 
 /**
  * Created by gnomeftlc on 2/7/17.
@@ -12,7 +14,7 @@ public class BetaXiangqiGame implements XiangqiGame {
     Board board;
     String moveMessage;
     private int movecount = 0;
-    private boolean valid;
+    private boolean valid = true;
     public BetaXiangqiGame(){
         board = Board.makeBoard(XiangqiGameVersion.BETA_XQ);
     }
@@ -26,15 +28,28 @@ public class BetaXiangqiGame implements XiangqiGame {
     @Override
     public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
         if(!board.isInBounds(source) || !board.isInBounds(destination)){
-            setValid(false);
             setMoveMessage("OUT OF BOUNDS");
             return MoveResult.ILLEGAL;
         }
 
+        XiangqiCoordinateImp newSource = XiangqiCoordinateImp.copyConstructor(source);
+        XiangqiCoordinateImp newDest = XiangqiCoordinateImp.copyConstructor(destination);
+        final List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> validators =
+                ValidateFactory.makeValidators(board.getPieceAt(source));
+
+        for (BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> p : validators) {
+            if(!p.test(newSource, newDest)) {
+                setMoveMessage("Illegal Pawn Move");
+                return MoveResult.ILLEGAL;
+            }
+        }
+
         return MoveResult.OK;
+
     }
 
     public void setMoveMessage(String moveMessage) {
+        setValid(false);
         this.moveMessage = moveMessage;
     }
 

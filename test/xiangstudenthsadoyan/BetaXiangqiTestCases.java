@@ -116,4 +116,14 @@ public class BetaXiangqiTestCases {
         assertEquals("OUT OF BOUNDS", game.getMoveMessage());
     }
 
+    @Test //8
+    public void validateIllegalPawnMove(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(XiangqiCoordinateImp.makeCoordinate(2,3), XiangqiCoordinateImp.makeCoordinate(2, 4)));
+        assertEquals("Illegal Pawn Move", game.getMoveMessage());
+    }
+
+    @Test //9
+    public void validateLegalPawnMove(){
+        assertEquals(MoveResult.OK, game.makeMove(XiangqiCoordinateImp.makeCoordinate(2,3), XiangqiCoordinateImp.makeCoordinate(3, 3)));
+    }
 }

@@ -1,6 +1,7 @@
 package xiangstudenthsadoyan.versions.beta;
 
 import xiangqi.common.XiangqiCoordinate;
+import xiangqi.common.XiangqiPiece;
 
 import java.util.*;
 import java.util.function.BiPredicate;
@@ -20,14 +21,18 @@ public class ValidateFactory {
             (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isOrthogonal(c2) || c1.isDiagonal(c2);
     private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> differentXiangqiCoordinateImpValidator =
             (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> !c1.equals(c2);
+    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> moveForwardValidator =
+            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isForward(c2);
 
-    public static List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> makeValidators(XiangqiPieceImp piece){
+    public static List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> makeValidators(XiangqiPiece piece){
 
         List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> validators =
                 new LinkedList<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>>();
         switch (piece.getPieceType()) {
-            case GENERAL:
+            case SOLDIER:
                 validators.add(adjacentValidator);
+                validators.add(orthogonalValidator);
+                validators.add(moveForwardValidator);
                 break;
         }
 
