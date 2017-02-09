@@ -45,7 +45,7 @@ public class Board {
         if(c.getFile() <= 0 || c.getRank() <= 0) {
             return false;
         }
-        return (c.getFile() < getNumFiles() && c.getRank() < getNumRanks());
+        return (c.getFile() <= getNumFiles() && c.getRank() <= getNumRanks());
     }
     public int getNumFiles() {
         return numFiles;
