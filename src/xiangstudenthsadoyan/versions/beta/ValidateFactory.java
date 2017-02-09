@@ -14,8 +14,8 @@ public class ValidateFactory {
             (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isDiagonal(c2);
     private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> adjacentValidator =
             (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.distanceTo(c2) == 1;
-    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> diagonalOrOrthogonalValidator =
-            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isOrthogonal(c2) || c1.isDiagonal(c2);
+//    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> diagonalOrOrthogonalValidator =
+//            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isOrthogonal(c2) || c1.isDiagonal(c2);
     private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> differentXiangqiCoordinateImpValidator =
             (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> !c1.equals(c2);
     private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> moveForwardValidator =
@@ -23,6 +23,8 @@ public class ValidateFactory {
 
     private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> diagonallyAdjascentValidator =
             (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isDiagonallyAdjascent(c2);
+    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> inGeneralsPalaceValidator =
+            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c2.inPalace();
 
     public static List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> makeValidators(XiangqiPieceImp piece){
 
@@ -38,10 +40,10 @@ public class ValidateFactory {
                 validators.add(diagonallyAdjascentValidator);
                 validators.add(diagonalValidator);
                 break;
-         /*   case GENERAL:
+            case GENERAL:
                 validators.add(adjacentValidator);
                 validators.add(orthogonalValidator);
-           */
+                validators.add(inGeneralsPalaceValidator);
         }
 
         return validators;
