@@ -247,10 +247,10 @@ public class BetaXiangqiTestCases {
             game.makeMove(TestCoordinate.makeCoordinate(3, 5), TestCoordinate.makeCoordinate(5, 5));
         }
 
-        game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
-        game.makeMove(TestCoordinate.makeCoordinate(5, 5), TestCoordinate.makeCoordinate(3, 5));
-        game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1));
-        assertEquals(MoveResult.DRAW, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(5, 5)));
+        assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
+        assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(5, 5), TestCoordinate.makeCoordinate(3, 5)));
+        assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(5, 5)));
     }
 
     @Test
@@ -275,13 +275,30 @@ public class BetaXiangqiTestCases {
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5,5), TestCoordinate.makeCoordinate(3, 5)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,1), TestCoordinate.makeCoordinate(3, 3)));
         assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(3, 1)));
-        assertEquals("Chariot Can't Jump Over A Piece", game.getMoveMessage());
+        assertEquals("Can't Jump Over A Piece", game.getMoveMessage());
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(3, 4)));
         assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(3,3), TestCoordinate.makeCoordinate(3, 5)));
     }
 
+    @Test
+    public void validateCheckmateIfKingUnderAttackAndCantMove(){
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(5, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5, 4), TestCoordinate.makeCoordinate(4, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 5), TestCoordinate.makeCoordinate(2, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5, 3), TestCoordinate.makeCoordinate(5, 4)));
 
+        assertEquals(MoveResult.RED_WINS, game.makeMove(TestCoordinate.makeCoordinate(5, 1), TestCoordinate.makeCoordinate(5, 2)));
 
+    }
+
+    /*
+    @Test
+    public void validateMoveCantPutGeneralUnderAttack(){
+
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(5, 1)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(5, 2), TestCoordinate.makeCoordinate(4, 1)));
+        assertEquals("Can't Expose General To Check", game.getMoveMessage());
+    }*/
 
 
 

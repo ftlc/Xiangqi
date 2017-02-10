@@ -3,6 +3,8 @@ package xiangstudenthsadoyan.versions.beta;
 import xiangqi.common.*;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by gnomeftlc on 2/9/17.
@@ -66,5 +68,26 @@ public class Board {
             }
         }
         return XiangqiPieceImp.makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE);
+    }
+
+    public XiangqiCoordinateImp getKingsLocation(XiangqiColor color){
+        XiangqiPieceImp king = XiangqiPieceImp.makePiece(XiangqiPieceType.GENERAL, color);
+        for(XiangqiCoordinateImp c: board.keySet()) {
+            if(board.get(c).equals(king)){
+                return c;
+            }
+        }
+
+        return null;
+    }
+
+    public HashSet getTheLocationsOfAllPiecesOfColor(XiangqiColor color){
+        HashSet<XiangqiCoordinateImp> coords = new HashSet<>();
+        for(XiangqiCoordinateImp c: board.keySet()){
+            if(board.get(c).getColor() == color){
+                coords.add(c);
+            }
+        }
+        return coords;
     }
 }

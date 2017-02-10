@@ -4,6 +4,7 @@ import xiangqi.common.*;
 import xiangstudenthsadoyan.versions.beta.XiangqiPieceImp;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.BiPredicate;
 
@@ -41,14 +42,31 @@ public class BetaXiangqiGame implements XiangqiGame {
 
         if(validateMove(newSource, newDest)) {
 
-
+            board.movePiece(newSource, newDest);
+            moveNumber++;
             if(moveNumber >= 20){
                 return MoveResult.DRAW;
             }
-            board.movePiece(newSource, newDest);
+            if(checkmate()) {
+                if (currentTurn == XiangqiColor.RED) {
+                    return MoveResult.RED_WINS;
+                } else {
+                    return MoveResult.BLACK_WINS;
+                }
+            }
+            switchCurrentTurn();
             return MoveResult.OK;
         } else {
             return MoveResult.ILLEGAL;
+        }
+    }
+
+    public boolean checkmate(){
+        XiangqiCoordinateImp kinglocation = board.getKingsLocation(getOppositeColor(currentTurn));
+        if(isLocationUnderAttack(kinglocation)){
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -72,27 +90,47 @@ public class BetaXiangqiGame implements XiangqiGame {
 
         if(!noPiecesInBetween(source, destination)) return false;
 
-        if(getPieceAt(source, XiangqiColor.RED).getColor() == XiangqiColor.BLACK){
-            source = convertToBlack(source);
-            destination = convertToBlack(destination);
-        }
+
 
         if(!runValidators(source, destination)) return false;
 
 
-        moveNumber++;
-        switchCurrentTurn();
         return true;
 
     }
 
+    private boolean isLocationUnderAttack(XiangqiCoordinateImp location){
+        XiangqiColor color = board.getPieceAt(location).getColor();
+
+        if(color!= XiangqiColor.NONE){
+            HashSet<XiangqiCoordinateImp> coords = board.getTheLocationsOfAllPiecesOfColor(getOppositeColor(color));
+            for(XiangqiCoordinateImp c : coords){
+                if(validateMove(c, location)){
+                    System.out.println(moveMessage);
+                    return true;
+                }
+            }
+
+        }
+        return false;
+    }
+
+    private XiangqiColor getOppositeColor(XiangqiColor color){
+        if(color == XiangqiColor.RED) {
+            return XiangqiColor.BLACK;
+        } else if(color == XiangqiColor.BLACK){
+            return XiangqiColor.RED;
+        } else {
+            return XiangqiColor.NONE;
+        }
+    }
     private boolean noPiecesInBetween(XiangqiCoordinateImp source, XiangqiCoordinateImp destination){
         if(destination.getFile() == source.getFile()){
             if(destination.getRank() > source.getRank()) {
                 for (int i = 1; i < source.distanceTo(destination); i++) {
                     XiangqiCoordinateImp temp = XiangqiCoordinateImp.makeCoordinate(source.getRank() + i, source.getFile());
                     if (board.getPieceAt(temp).getColor() != XiangqiColor.NONE) {
-                        setMoveMessage("Chariot Can't Jump Over A Piece");
+                        setMoveMessage("Can't Jump Over A Piece");
                         return false;
                     }
                 }
@@ -102,7 +140,7 @@ public class BetaXiangqiGame implements XiangqiGame {
                 for (int i = 1; i < source.distanceTo(destination); i++) {
                     XiangqiCoordinateImp temp = XiangqiCoordinateImp.makeCoordinate(source.getRank() - i, source.getFile());
                     if (board.getPieceAt(temp).getColor() != XiangqiColor.NONE) {
-                        setMoveMessage("Chariot Can't Jump Over A Piece");
+                        setMoveMessage("Can't Jump Over A Piece");
                         return false;
                     }
                 }
@@ -114,7 +152,7 @@ public class BetaXiangqiGame implements XiangqiGame {
                 for (int i = 1; i < source.distanceTo(destination); i++) {
                     XiangqiCoordinateImp temp = XiangqiCoordinateImp.makeCoordinate(source.getRank(), source.getFile() + i);
                     if (board.getPieceAt(temp).getColor() != XiangqiColor.NONE) {
-                        setMoveMessage("Chariot Can't Jump Over A Piece");
+                        setMoveMessage("Can't Jump Over A Piece");
                         return false;
                     }
                 }
@@ -124,7 +162,7 @@ public class BetaXiangqiGame implements XiangqiGame {
                 for (int i = 1; i < source.distanceTo(destination); i++) {
                     XiangqiCoordinateImp temp = XiangqiCoordinateImp.makeCoordinate(source.getRank(), source.getFile() - i);
                     if (board.getPieceAt(temp).getColor() != XiangqiColor.NONE) {
-                        setMoveMessage("Chariot Can't Jump Over A Piece");
+                        setMoveMessage("Can't Jump Over A Piece");
                         return false;
                     }
                 }
@@ -134,12 +172,19 @@ public class BetaXiangqiGame implements XiangqiGame {
     }
     private boolean runValidators(XiangqiCoordinateImp source, XiangqiCoordinateImp destination){
 
+        XiangqiCoordinateImp blackSource = XiangqiCoordinateImp.copyConstructor(source);
+        XiangqiCoordinateImp blackDest = XiangqiCoordinateImp.copyConstructor(destination);
+        if(getPieceAt(source, XiangqiColor.RED).getColor() == XiangqiColor.BLACK){
+            blackSource = convertToBlack(source);
+            blackDest = convertToBlack(destination);
+        }
+
         XiangqiPieceImp piece = XiangqiPieceImp.copyConstructor(board.getPieceAt(source));
         final List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> validators =
                 ValidateFactory.makeValidators(piece);
 
         for (BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> p : validators) {
-            if(!p.test(source, destination)) {
+            if(!p.test(blackSource, blackDest)) {
                 setMoveMessage("Illegal " + piece.toString() + " Move");
                 return false;
             }
@@ -147,13 +192,14 @@ public class BetaXiangqiGame implements XiangqiGame {
 
         return true;
     }
-    private int switchCurrentTurn(){
+
+
+    private void switchCurrentTurn(){
         if(currentTurn == XiangqiColor.RED){
             currentTurn = XiangqiColor.BLACK;
         } else {
             currentTurn = XiangqiColor.RED;
         }
-        return moveNumber;
     }
 
 

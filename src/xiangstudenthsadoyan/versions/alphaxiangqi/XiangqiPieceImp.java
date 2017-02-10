@@ -14,7 +14,7 @@ public class XiangqiPieceImp implements XiangqiPiece {
         this.pieceType = pieceType;
         this.color = color;
     }
-    public static XiangqiPiece makePiece(XiangqiPieceType pieceType, XiangqiColor color){
+    public static XiangqiPieceImp makePiece(XiangqiPieceType pieceType, XiangqiColor color){
         return new XiangqiPieceImp(pieceType, color);
     }
     @Override

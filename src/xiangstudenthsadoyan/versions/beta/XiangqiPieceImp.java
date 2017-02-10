@@ -14,7 +14,7 @@ public class XiangqiPieceImp implements XiangqiPiece {
         this.pieceType = pieceType;
         this.color = color;
     }
-    public static XiangqiPiece makePiece(XiangqiPieceType pieceType, XiangqiColor color){
+    public static XiangqiPieceImp makePiece(XiangqiPieceType pieceType, XiangqiColor color){
         return new XiangqiPieceImp(pieceType, color);
     }
 
@@ -34,5 +34,23 @@ public class XiangqiPieceImp implements XiangqiPiece {
     @Override
     public String toString(){
         return pieceType.toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        XiangqiPieceImp that = (XiangqiPieceImp) o;
+
+        if (pieceType != that.pieceType) return false;
+        return color == that.color;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = pieceType != null ? pieceType.hashCode() : 0;
+        result = 31 * result + (color != null ? color.hashCode() : 0);
+        return result;
     }
 }
