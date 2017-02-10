@@ -44,7 +44,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 
             board.movePiece(newSource, newDest);
             moveNumber++;
-            if(moveNumber >= 20){
+            if(moveNumber > 20){
                 return MoveResult.DRAW;
             }
             if(checkmate()) {

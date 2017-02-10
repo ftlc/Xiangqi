@@ -250,7 +250,7 @@ public class BetaXiangqiTestCases {
         assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
         assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(5, 5), TestCoordinate.makeCoordinate(3, 5)));
         assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1)));
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(5, 5)));
+        assertEquals(MoveResult.DRAW, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(5, 5)));
     }
 
     @Test
@@ -291,14 +291,6 @@ public class BetaXiangqiTestCases {
 
     }
 
-    /*
-    @Test
-    public void validateMoveCantPutGeneralUnderAttack(){
-
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(5, 1)));
-        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(5, 2), TestCoordinate.makeCoordinate(4, 1)));
-        assertEquals("Can't Expose General To Check", game.getMoveMessage());
-    }*/
 
 
 
