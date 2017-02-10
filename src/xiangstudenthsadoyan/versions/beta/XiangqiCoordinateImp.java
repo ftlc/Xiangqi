@@ -18,7 +18,7 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
     public static XiangqiCoordinateImp copyConstructor(XiangqiCoordinate toCopy) {
         return new XiangqiCoordinateImp(toCopy.getRank(), toCopy.getFile());
     }
-    public static XiangqiCoordinate makeCoordinate(int rank, int file){
+    public static XiangqiCoordinateImp makeCoordinate(int rank, int file){
         return new XiangqiCoordinateImp(rank, file);
     }
     @Override
@@ -52,6 +52,7 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
     public boolean isForward(XiangqiCoordinate c2){
         return c2.getRank() > getRank() && c2.getFile() == getFile();
     }
+
     @Override
     public boolean equals(Object obj){
         if (this == obj) {
@@ -71,6 +72,13 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = rank;
+        result = 31 * result + file;
+        return result;
     }
 
     @Override

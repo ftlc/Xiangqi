@@ -1,9 +1,6 @@
 package xiangstudenthsadoyan.versions.beta;
 
-import com.sun.org.apache.bcel.internal.generic.IXOR;
-import xiangqi.XiangqiGameFactory;
 import xiangqi.common.*;
-import xiangstudenthsadoyan.versions.beta.*;
 
 import java.util.HashMap;
 
@@ -11,7 +8,7 @@ import java.util.HashMap;
  * Created by gnomeftlc on 2/9/17.
  */
 public class Board {
-    private HashMap<XiangqiCoordinate, XiangqiPiece> board;
+    private HashMap<XiangqiCoordinateImp, XiangqiPiece> board;
     private int numRanks;
     private int numFiles;
     public static Board makeBoard(XiangqiGameVersion version) {
@@ -21,7 +18,7 @@ public class Board {
         switch(version) {
             case BETA_XQ:
                 numRanks = numFiles = 5;
-                board = new HashMap<XiangqiCoordinate, XiangqiPiece>();
+                board = new HashMap<XiangqiCoordinateImp, XiangqiPiece>();
 
                 //Initialize Red pieces
                 board.put(XiangqiCoordinateImp.makeCoordinate(1,3), XiangqiPieceImp.makePiece(XiangqiPieceType.GENERAL, XiangqiColor.RED));
@@ -42,10 +39,13 @@ public class Board {
         }
     }
 
-  //  public MoveResult movePiece(XiangqiCoordinate from, XiangqiCoordinate to){
-  //      XiangqiPiece
-  //  }
-    public boolean isInBounds(XiangqiCoordinate c) {
+    public void movePiece(XiangqiCoordinateImp from, XiangqiCoordinateImp to){
+        XiangqiPiece temp = board.get(from);
+        board.put(to, temp);
+        board.remove(from);
+    }
+
+    public boolean isInBounds(XiangqiCoordinateImp c) {
         if(c.getFile() <= 0 || c.getRank() <= 0) {
             return false;
         }
@@ -59,8 +59,8 @@ public class Board {
         return numRanks;
     }
 
-    public XiangqiPiece getPieceAt(XiangqiCoordinate where){
-        for(XiangqiCoordinate c: board.keySet()) {
+    public XiangqiPiece getPieceAt(XiangqiCoordinateImp where){
+        for(XiangqiCoordinateImp c: board.keySet()) {
             if(c.equals(where)) {
                 return board.get(c);
             }
