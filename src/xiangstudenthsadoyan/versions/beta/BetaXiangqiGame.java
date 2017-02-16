@@ -3,9 +3,7 @@ package xiangstudenthsadoyan.versions.beta;
 import xiangqi.common.*;
 import xiangstudenthsadoyan.versions.beta.XiangqiPieceImp;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 import java.util.function.BiPredicate;
 
 /**
@@ -39,7 +37,10 @@ public class BetaXiangqiGame implements XiangqiGame {
             return MoveResult.ILLEGAL;
         }
 
-
+        if(currentTurn == XiangqiColor.BLACK){
+            newSource = convertCoordinate(newSource);
+            newDest = convertCoordinate(newDest);
+        }
         if(validateMove(newSource, newDest)) {
 
             board.movePiece(newSource, newDest);
@@ -64,10 +65,33 @@ public class BetaXiangqiGame implements XiangqiGame {
     public boolean checkmate(){
         XiangqiCoordinateImp kinglocation = board.getKingsLocation(getOppositeColor(currentTurn));
         if(isLocationUnderAttack(kinglocation)){
-            return true;
+            return(!canGeneralMove(kinglocation));
         } else {
             return false;
         }
+    }
+
+
+    public boolean canGeneralMove(XiangqiCoordinateImp kinglocation){
+        XiangqiColor color = board.getPieceAt(kinglocation).getColor();
+        for(int i = 2; i <= 4; i++) {
+            if(color == XiangqiColor.BLACK) {
+                if(validateMove(kinglocation, XiangqiCoordinateImp.makeCoordinate(5, i))) {
+                    if (!isLocationUnderAttack(XiangqiCoordinateImp.makeCoordinate(5, i))) {
+                        return true;
+                    }
+                }
+            } else {
+                if(validateMove(kinglocation, XiangqiCoordinateImp.makeCoordinate(1, i))) {
+                    if (!isLocationUnderAttack(XiangqiCoordinateImp.makeCoordinate(5, i))) {
+                        return true;
+                    }
+                }
+            }
+        }
+
+
+        return false;
     }
 
     public boolean validateMove(XiangqiCoordinateImp source, XiangqiCoordinateImp destination) {
@@ -92,6 +116,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 
 
 
+
         if(!runValidators(source, destination)) return false;
 
 
@@ -106,7 +131,6 @@ public class BetaXiangqiGame implements XiangqiGame {
             HashSet<XiangqiCoordinateImp> coords = board.getTheLocationsOfAllPiecesOfColor(getOppositeColor(color));
             for(XiangqiCoordinateImp c : coords){
                 if(validateMove(c, location)){
-                    System.out.println(moveMessage);
                     return true;
                 }
             }
@@ -125,58 +149,31 @@ public class BetaXiangqiGame implements XiangqiGame {
         }
     }
     private boolean noPiecesInBetween(XiangqiCoordinateImp source, XiangqiCoordinateImp destination){
-        if(destination.getFile() == source.getFile()){
-            if(destination.getRank() > source.getRank()) {
-                for (int i = 1; i < source.distanceTo(destination); i++) {
-                    XiangqiCoordinateImp temp = XiangqiCoordinateImp.makeCoordinate(source.getRank() + i, source.getFile());
-                    if (board.getPieceAt(temp).getColor() != XiangqiColor.NONE) {
-                        setMoveMessage("Can't Jump Over A Piece");
-                        return false;
-                    }
-                }
+
+        Set<XiangqiCoordinateImp> occupied = board.getAllOccupiedLocations();
+        for(XiangqiCoordinateImp o: occupied){
+            if(o.equals(source) || o.equals(destination)){
+                continue;
             }
 
-            if(destination.getRank() < source.getRank()) {
-                for (int i = 1; i < source.distanceTo(destination); i++) {
-                    XiangqiCoordinateImp temp = XiangqiCoordinateImp.makeCoordinate(source.getRank() - i, source.getFile());
-                    if (board.getPieceAt(temp).getColor() != XiangqiColor.NONE) {
-                        setMoveMessage("Can't Jump Over A Piece");
-                        return false;
-                    }
-                }
+            if(source.isLocationBetween(o,destination)){
+                setMoveMessage("Can't Jump Over A Piece");
+                return false;
             }
+
         }
 
-        if(destination.getRank() == source.getRank()){
-            if(destination.getFile() > source.getFile()) {
-                for (int i = 1; i < source.distanceTo(destination); i++) {
-                    XiangqiCoordinateImp temp = XiangqiCoordinateImp.makeCoordinate(source.getRank(), source.getFile() + i);
-                    if (board.getPieceAt(temp).getColor() != XiangqiColor.NONE) {
-                        setMoveMessage("Can't Jump Over A Piece");
-                        return false;
-                    }
-                }
-            }
-
-            if(destination.getFile() < source.getFile()) {
-                for (int i = 1; i < source.distanceTo(destination); i++) {
-                    XiangqiCoordinateImp temp = XiangqiCoordinateImp.makeCoordinate(source.getRank(), source.getFile() - i);
-                    if (board.getPieceAt(temp).getColor() != XiangqiColor.NONE) {
-                        setMoveMessage("Can't Jump Over A Piece");
-                        return false;
-                    }
-                }
-            }
-        }
         return true;
+
+
     }
     private boolean runValidators(XiangqiCoordinateImp source, XiangqiCoordinateImp destination){
 
         XiangqiCoordinateImp blackSource = XiangqiCoordinateImp.copyConstructor(source);
         XiangqiCoordinateImp blackDest = XiangqiCoordinateImp.copyConstructor(destination);
         if(getPieceAt(source, XiangqiColor.RED).getColor() == XiangqiColor.BLACK){
-            blackSource = convertToBlack(source);
-            blackDest = convertToBlack(destination);
+            blackSource = convertCoordinate(source);
+            blackDest = convertCoordinate(destination);
         }
 
         XiangqiPieceImp piece = XiangqiPieceImp.copyConstructor(board.getPieceAt(source));
@@ -189,7 +186,6 @@ public class BetaXiangqiGame implements XiangqiGame {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -220,27 +216,21 @@ public class BetaXiangqiGame implements XiangqiGame {
     @Override
     public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
         XiangqiCoordinateImp temp = XiangqiCoordinateImp.copyConstructor(where);
-        temp = convertToStandard(temp, aspect);
+
+        if(aspect == XiangqiColor.BLACK) {
+            temp = convertCoordinate(temp);
+        }
         return board.getPieceAt(temp);
     }
 
-    private XiangqiCoordinateImp convertToStandard(XiangqiCoordinateImp where, XiangqiColor aspect) {
-        if(aspect == XiangqiColor.BLACK){
-            int rank = board.getNumRanks() - where.getRank() + 1;
-            int file = board.getNumFiles() - where.getFile() + 1;
-            XiangqiCoordinateImp standardCoord = XiangqiCoordinateImp.makeCoordinate(rank, file);
-            return standardCoord;
-        }
 
-        return where;
-    }
 
-    public XiangqiCoordinateImp convertToBlack(XiangqiCoordinateImp original){
+
+    public XiangqiCoordinateImp convertCoordinate(XiangqiCoordinateImp original){
         int rank = board.getNumRanks() - original.getRank() + 1;
         int file = board.getNumFiles() - original.getFile() + 1;
-        XiangqiCoordinate temp = XiangqiCoordinateImp.makeCoordinate(rank, file);
-        XiangqiCoordinateImp toReturn = XiangqiCoordinateImp.copyConstructor(temp);
-        return toReturn;
+        XiangqiCoordinateImp standardCoord = XiangqiCoordinateImp.makeCoordinate(rank, file);
+        return standardCoord;
     }
 
 

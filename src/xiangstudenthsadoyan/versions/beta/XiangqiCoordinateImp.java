@@ -49,6 +49,45 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
 
     }
 
+    public boolean isLocationBetween(XiangqiCoordinateImp loc, XiangqiCoordinateImp dest) {
+
+
+        int deltaX = dest.getFile() - getFile();
+        int deltaY = dest.getRank() - getRank();
+
+        int signX = Integer.signum(deltaX);
+        int signY = Integer.signum(deltaY);
+
+        deltaX = Math.abs(deltaX);
+        deltaY = Math.abs(deltaY);
+
+        int ex = 0;
+        int tempRank = getRank();
+        int tempFile = getFile();
+        int i = 0;
+        while(ex == 0) {
+            tempRank += signY;
+            tempFile += signX;
+
+            if(XiangqiCoordinateImp.makeCoordinate(tempRank, tempFile).equals(dest)){
+                return false;
+            }
+            if(XiangqiCoordinateImp.makeCoordinate(tempRank, tempFile).equals(loc)){
+                return true;
+            }
+
+            i++;
+
+            if(i > deltaX && i > deltaY){
+                return true;
+            }
+        }
+
+        return true;
+
+    }
+
+
     public boolean isForward(XiangqiCoordinate c2){
         return c2.getRank() > getRank() && c2.getFile() == getFile();
     }

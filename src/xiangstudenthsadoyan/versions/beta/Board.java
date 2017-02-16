@@ -13,10 +13,23 @@ public class Board {
     private HashMap<XiangqiCoordinateImp, XiangqiPiece> board;
     private int numRanks;
     private int numFiles;
+    private XiangqiGameVersion version;
+
+    public static Board copyConstructor(Board toCopy){
+        Board toRet = new Board(toCopy.version);
+        toRet.board = new HashMap<>(toCopy.board);
+        return toRet;
+    }
+
+    public HashMap getHashMap(){
+        return board;
+    }
+
     public static Board makeBoard(XiangqiGameVersion version) {
         return new Board(version);
     }
     private Board(XiangqiGameVersion version) {
+        this.version = version;
         switch(version) {
             case BETA_XQ:
                 numRanks = numFiles = 5;
@@ -81,6 +94,10 @@ public class Board {
         return null;
     }
 
+
+    public Set getAllOccupiedLocations(){
+        return board.keySet();
+    }
     public HashSet getTheLocationsOfAllPiecesOfColor(XiangqiColor color){
         HashSet<XiangqiCoordinateImp> coords = new HashSet<>();
         for(XiangqiCoordinateImp c: board.keySet()){

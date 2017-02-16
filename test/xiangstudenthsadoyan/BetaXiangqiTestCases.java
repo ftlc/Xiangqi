@@ -165,7 +165,7 @@ public class BetaXiangqiTestCases {
     @Test //11
     public void validateLegalPawnMoveBlack(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(4,3), TestCoordinate.makeCoordinate(3, 3)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(2,3), TestCoordinate.makeCoordinate(3, 3)));
     }
 
     @Test //12
@@ -186,12 +186,12 @@ public class BetaXiangqiTestCases {
     @Test //14
     public void validateIllegalAdvisorMovesBlack(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
-        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(5,2), TestCoordinate.makeCoordinate(5, 2)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(1,4), TestCoordinate.makeCoordinate(1, 4)));
         assertEquals("Illegal Advisor Move", game.getMoveMessage());
 
-        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(5,2), TestCoordinate.makeCoordinate(5, 3)));
-        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(5,2), TestCoordinate.makeCoordinate(4, 2)));
-        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(5,2), TestCoordinate.makeCoordinate(3, 4)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(1,4), TestCoordinate.makeCoordinate(1, 3)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(1,4), TestCoordinate.makeCoordinate(2, 4)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(1,4), TestCoordinate.makeCoordinate(3, 2)));
     }
 
     @Test //15
@@ -204,7 +204,7 @@ public class BetaXiangqiTestCases {
     @Test //15
     public void validateLegalGeneralMove(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5, 2), TestCoordinate.makeCoordinate(4, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,3), TestCoordinate.makeCoordinate(1, 2)));
     }
 
@@ -218,22 +218,22 @@ public class BetaXiangqiTestCases {
     @Test
     public void validateLegalChariotMove(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1), TestCoordinate.makeCoordinate(3, 1)));
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5,5), TestCoordinate.makeCoordinate(3, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1), TestCoordinate.makeCoordinate(3, 1)));
     }
 
     @Test
     public void validateMoveIsSaved(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1), TestCoordinate.makeCoordinate(3, 1)));
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5,5), TestCoordinate.makeCoordinate(3, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1), TestCoordinate.makeCoordinate(3, 1)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,1), TestCoordinate.makeCoordinate(3, 3)));
     }
 
     @Test
     public void validateCorrectTurnOrder(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1), TestCoordinate.makeCoordinate(3, 1)));
-        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(3,1), TestCoordinate.makeCoordinate(3, 3)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(3, 3)));
         assertEquals("Piece Wrong Color", game.getMoveMessage());
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5,5), TestCoordinate.makeCoordinate(3, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1), TestCoordinate.makeCoordinate(3, 1)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,1), TestCoordinate.makeCoordinate(3, 3)));
     }
 
@@ -242,22 +242,22 @@ public class BetaXiangqiTestCases {
 
         for(int i = 0; i < 4; i++) {
             game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
-            game.makeMove(TestCoordinate.makeCoordinate(5, 5), TestCoordinate.makeCoordinate(3, 5));
+            game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
             game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1));
-            game.makeMove(TestCoordinate.makeCoordinate(3, 5), TestCoordinate.makeCoordinate(5, 5));
+            game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1));
         }
 
         assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
-        assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(5, 5), TestCoordinate.makeCoordinate(3, 5)));
+        assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
         assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1)));
-        assertEquals(MoveResult.DRAW, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(5, 5)));
+        assertEquals(MoveResult.DRAW, game.makeMove(TestCoordinate.makeCoordinate(3,1), TestCoordinate.makeCoordinate(1, 1)));
     }
 
     @Test
     public void validateCapture(){
 
         game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
-        game.makeMove(TestCoordinate.makeCoordinate(5, 5), TestCoordinate.makeCoordinate(3, 5));
+        game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(3, 5)));
         assertEquals(XiangqiColor.RED, game.getPieceAt(TestCoordinate.makeCoordinate(3, 5), XiangqiColor.RED).getColor());
 
@@ -272,24 +272,36 @@ public class BetaXiangqiTestCases {
     @Test
     public void validateCantJumpOverPieces(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1), TestCoordinate.makeCoordinate(3, 1)));
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5,5), TestCoordinate.makeCoordinate(3, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1), TestCoordinate.makeCoordinate(3, 1)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,1), TestCoordinate.makeCoordinate(3, 3)));
-        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(3, 1)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(3,1), TestCoordinate.makeCoordinate(3, 4)));
         assertEquals("Can't Jump Over A Piece", game.getMoveMessage());
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,5), TestCoordinate.makeCoordinate(3, 4)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3,1), TestCoordinate.makeCoordinate(3, 2)));
         assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(3,3), TestCoordinate.makeCoordinate(3, 5)));
     }
 
     @Test
     public void validateCheckmateIfKingUnderAttackAndCantMove(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(5, 1)));
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5, 4), TestCoordinate.makeCoordinate(4, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 5), TestCoordinate.makeCoordinate(2, 5)));
-        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5, 3), TestCoordinate.makeCoordinate(5, 4)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 3), TestCoordinate.makeCoordinate(1, 2)));
 
         assertEquals(MoveResult.RED_WINS, game.makeMove(TestCoordinate.makeCoordinate(5, 1), TestCoordinate.makeCoordinate(5, 2)));
-
     }
+
+ /*   @Test
+    public void validateNotCheckmateIfKingCanRunAway(){
+
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5, 4), TestCoordinate.makeCoordinate(4, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 5), TestCoordinate.makeCoordinate(2, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(4, 3), TestCoordinate.makeCoordinate(3, 3)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(3, 3)));
+    }
+
+    */
+
 
 
 
