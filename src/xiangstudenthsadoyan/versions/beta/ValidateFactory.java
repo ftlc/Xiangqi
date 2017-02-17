@@ -1,52 +1,61 @@
 package xiangstudenthsadoyan.versions.beta;
 
+import xiangqi.common.XiangqiColor;
+
 import java.util.*;
 import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 /**
  * Created by gnomeftlc on 2/9/17.
  */
 public class ValidateFactory {
 
-    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> orthogonalValidator =
-            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isOrthogonal(c2);
-    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> diagonalValidator =
-            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isDiagonal(c2);
-    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> adjacentValidator =
-            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.distanceTo(c2) == 1;
-//    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> diagonalOrOrthogonalValidator =
-//            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isOrthogonal(c2) || c1.isDiagonal(c2);
-    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> differentXiangqiCoordinateImpValidator =
-            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> !c1.equals(c2);
-    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> moveForwardValidator =
-            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isForward(c2);
 
-    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> diagonallyAdjascentValidator =
-            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c1.isDiagonallyAdjascent(c2);
-    private static BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp> inGeneralsPalaceValidator =
-            (XiangqiCoordinateImp c1, XiangqiCoordinateImp c2) -> c2.inPalace();
 
-    public static List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> makeValidators(XiangqiPieceImp piece){
+    private static Predicate<State> orthogonalStateValidator = (State s) -> s.isOrthogonal();
+    private static Predicate<State> diagonalStateValidator = (State s) -> s.isDiagonal();
+    private static Predicate<State> adjascentStateValidator = (State s) -> s.isAdjascent();
+    private static Predicate<State> moveForwardStateValidator = (State s) -> s.isForward();
+    private static Predicate<State> differentStateXiangqiCoordinateImpValidator = (State s) -> s.isDifferent();
+    private static Predicate<State> diagonallyAdjascentStateValidator = (State s) -> s.isDiagonallyAdjascent();
+    private static Predicate<State> inGeneralsPalaceStateValidator = (State s) -> s.inPalace();
+    private static Predicate<State> pieceAtSource = (State s) -> s.pieceAtSource();
+    private static Predicate<State> moveOnOwnPiece = (State s) -> s.moveOnOwnPiece();
+    private static Predicate<State> noPiecesInBetween = (State s) -> s.noPiecesInBetween();
+    private static Predicate<State> checkInBounds = (State s) -> s.isInBounds();
 
-        List<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>> validators =
-                new LinkedList<BiPredicate<XiangqiCoordinateImp, XiangqiCoordinateImp>>();
+
+    public static List<Predicate<State>> makeStateValidators(XiangqiPieceImp piece){
+
+
+        List<Predicate<State>> validators = new LinkedList<Predicate<State>>();
+
+        validators.add(pieceAtSource);
+        validators.add(moveOnOwnPiece);
         switch (piece.getPieceType()) {
             case SOLDIER:
-                validators.add(adjacentValidator);
-                validators.add(orthogonalValidator);
-                validators.add(moveForwardValidator);
+                validators.add(noPiecesInBetween);
+                validators.add(orthogonalStateValidator);
+                validators.add(adjascentStateValidator);
+                validators.add(moveForwardStateValidator);
                 break;
             case ADVISOR:
-                validators.add(diagonallyAdjascentValidator);
-                validators.add(diagonalValidator);
+                validators.add(diagonalStateValidator);
+                validators.add(diagonallyAdjascentStateValidator);
+                validators.add(noPiecesInBetween);
                 break;
             case GENERAL:
-                validators.add(adjacentValidator);
-                validators.add(orthogonalValidator);
-                validators.add(inGeneralsPalaceValidator);
+                validators.add(orthogonalStateValidator);
+                validators.add(adjascentStateValidator);
+                validators.add(inGeneralsPalaceStateValidator);
+                validators.add(noPiecesInBetween);
+                break;
             case CHARIOT:
-                validators.add(orthogonalValidator);
-                validators.add(differentXiangqiCoordinateImpValidator);
+                validators.add(orthogonalStateValidator);
+                validators.add(differentStateXiangqiCoordinateImpValidator);
+                validators.add(noPiecesInBetween);
+                break;
         }
 
         return validators;

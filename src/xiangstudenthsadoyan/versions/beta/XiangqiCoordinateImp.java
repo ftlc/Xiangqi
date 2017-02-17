@@ -41,8 +41,12 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
         return isDiagonal(c2) && (distanceTo(c2) == 2);
     }
 
-    public boolean inPalace(){
-        return getRank() == 1 && getFile() >= 2 && getRank() <= 4;
+    public boolean inPalace(XiangqiColor currentTurn){
+        if(currentTurn == XiangqiColor.RED) {
+            return getRank() == 1 && getFile() >= 2 && getFile() <= 4;
+        } else {
+            return getRank() == 5 && getFile() >= 2 && getFile() <= 4;
+        }
     }
     public boolean isDiagonal(XiangqiCoordinate c2){
         return (Math.abs(getRank() - c2.getRank()) == Math.abs(getFile() - c2.getFile()));
@@ -88,8 +92,12 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
     }
 
 
-    public boolean isForward(XiangqiCoordinate c2){
-        return c2.getRank() > getRank() && c2.getFile() == getFile();
+    public boolean isForward(XiangqiCoordinate c2, XiangqiColor color){
+        if(color == XiangqiColor.RED) {
+            return c2.getRank() > getRank() && c2.getFile() == getFile();
+        } else {
+            return c2.getRank() < getRank() && c2.getFile() == getFile();
+        }
     }
 
     @Override
