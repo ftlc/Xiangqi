@@ -1,8 +1,9 @@
-package xiangstudenthsadoyan.versions.beta;
+package xiangstudenthsadoyan.commonImplemenations;
 
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiPieceType;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -13,15 +14,56 @@ public class State {
     private XiangqiCoordinateImp source;
     private XiangqiCoordinateImp destination;
     private String moveMessage;
-    private XiangqiColor currentTurn;
+    private XiangqiColor aspect;
 
-    public State(Board board, XiangqiCoordinateImp source, XiangqiCoordinateImp dest, XiangqiColor currentTurn){
+
+    public static State copyConstructor(State oldState){
+        State newState = new State(
+                Board.copyConstructor(oldState.board),
+                oldState.source,
+                oldState.destination,
+                oldState.aspect);
+        return newState;
+    }
+
+
+    public State(Board board, XiangqiCoordinateImp source, XiangqiCoordinateImp dest, XiangqiColor aspect){
        this.board = board;
        this.source = source;
        this.destination = dest;
-       this.currentTurn = currentTurn;
+       this.aspect = aspect;
     }
 
+    public void setSource(XiangqiCoordinateImp source) {
+        this.source = source;
+    }
+
+    public void setDestination(XiangqiCoordinateImp destination) {
+        this.destination = destination;
+    }
+
+    public Board getBoard() {
+        return board;
+    }
+
+    public void movePiece(XiangqiCoordinateImp src, XiangqiCoordinateImp dest){
+        board.movePiece(src, dest);
+    }
+    public XiangqiColor getAspect() {
+        return aspect;
+    }
+
+    public XiangqiCoordinateImp getKingsLocation(XiangqiColor color){
+        return board.getKingsLocation(color);
+    }
+
+    public XiangqiCoordinateImp getDestination() {
+        return destination;
+    }
+
+    public XiangqiCoordinateImp getSource() {
+        return source;
+    }
 
     public void setMoveMessage(String moveMessage) {
         this.moveMessage = moveMessage;
@@ -37,6 +79,10 @@ public class State {
             return false;
         }
         return true;
+    }
+
+    public HashSet<XiangqiCoordinateImp> getTheLocationsOfAllPiecesOfColor(XiangqiColor color){
+        return board.getTheLocationsOfAllPiecesOfColor(color);
     }
 
     public boolean moveOnOwnPiece(){
@@ -65,19 +111,21 @@ public class State {
     }
 
     public boolean inPalace(){
-        if(!destination.inPalace(currentTurn)){
-            setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
+        if(!board.inPalace(destination)){
+        //if(!destination.inPalace()){
+            setMoveMessage("General Can't Leave Palace");
             return false;
         }
         return true;
     }
     public boolean isDiagonallyAdjascent(){
-        if(!source.isDiagonallyAdjascent(destination)){
+        if(!source.isDiagonallyAdjacent(destination)){
             setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
             return false;
         }
         return true;
     }
+
 
     public boolean isDiagonal(){
         if(!source.isDiagonal(destination)){
@@ -95,8 +143,12 @@ public class State {
         return true;
     }
 
+    public void setAspect(XiangqiColor aspect) {
+        this.aspect = aspect;
+    }
+
     public boolean isForward(){
-        if(!(source.isForward(destination, currentTurn))){
+        if(!(source.isForward(destination, aspect))){
             setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
             return false;
         }
@@ -111,22 +163,39 @@ public class State {
 
     }
 
-    public boolean noPiecesInBetween(){
+    public boolean canGeneralsSeeEachOther(){
+        XiangqiCoordinateImp redKing = board.getKingsLocation(XiangqiColor.RED);
+        XiangqiCoordinateImp blackKing = board.getKingsLocation(XiangqiColor.BLACK);
+
+        if(redKing.getFile() != blackKing.getFile()){
+            return false;
+        }
+        if(noPiecesInBetween(redKing, blackKing)){
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public boolean noPiecesInBetween(XiangqiCoordinateImp source, XiangqiCoordinateImp dest){
 
         Set<XiangqiCoordinateImp> occupied = board.getAllOccupiedLocations();
         for(XiangqiCoordinateImp o: occupied){
-            if(o.equals(source) || o.equals(destination)){
+            if(o.equals(source) || o.equals(dest)){
                 continue;
             }
-
-            if(source.isLocationBetween(o,destination)){
+            if(source.isLocationBetween(o,dest)){
                 setMoveMessage("Can't Jump Over A Piece");
                 return false;
             }
-
         }
-
         return true;
+    }
+
+
+    public boolean noPiecesInBetween(){
+        return noPiecesInBetween(source, destination);
     }
 
 

@@ -1,15 +1,17 @@
-package xiangstudenthsadoyan.versions.beta;
+package xiangstudenthsadoyan.versions.gamma;
 
 import xiangqi.common.*;
 import xiangstudenthsadoyan.commonImplemenations.*;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.function.Predicate;
 
 /**
- * Created by gnomeftlc on 2/7/17.
+ * Created by gnomeftlc on 2/18/17.
  */
-public class BetaXiangqiGame implements XiangqiGame {
+public class GammaXiangqiGame implements XiangqiGame {
+
     private Board board;
     private String moveMessage;
     private XiangqiColor currentTurn;
@@ -17,10 +19,8 @@ public class BetaXiangqiGame implements XiangqiGame {
     private boolean valid = true;
     private State moveState;
 
-
-
-    public BetaXiangqiGame(){
-        board = Board.makeBoard(XiangqiGameVersion.BETA_XQ);
+    public GammaXiangqiGame(){
+        board = Board.makeBoard(XiangqiGameVersion.GAMMA_XQ);
         currentTurn = XiangqiColor.RED;
     }
 
@@ -30,6 +30,7 @@ public class BetaXiangqiGame implements XiangqiGame {
     private void setValid(boolean v){
         this.valid = v;
     }
+
 
 
 
@@ -77,7 +78,7 @@ public class BetaXiangqiGame implements XiangqiGame {
                     return MoveResult.BLACK_WINS;
                 }
             }
-            if(moveNumber > 20){
+            if(moveNumber > 50){
                 return MoveResult.DRAW;
             }
             switchCurrentTurn();
@@ -156,7 +157,6 @@ public class BetaXiangqiGame implements XiangqiGame {
     }
 
     private boolean isLocationUnderAttack(State theState, XiangqiCoordinateImp location){
-        //XiangqiColor color = board.getPieceAt(location).getColor();
         State tempState = State.copyConstructor(theState);
         tempState.setDestination(location);
         if(tempState.getAspect() != XiangqiColor.NONE){

@@ -1,4 +1,4 @@
-package xiangstudenthsadoyan.versions.beta;
+package xiangstudenthsadoyan.commonImplemenations;
 
 import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiPiece;
@@ -47,10 +47,4 @@ public class XiangqiPieceImp implements XiangqiPiece {
         return color == that.color;
     }
 
-    @Override
-    public int hashCode() {
-        int result = pieceType != null ? pieceType.hashCode() : 0;
-        result = 31 * result + (color != null ? color.hashCode() : 0);
-        return result;
-    }
 }

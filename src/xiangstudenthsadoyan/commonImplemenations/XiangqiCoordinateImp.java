@@ -1,8 +1,6 @@
-package xiangstudenthsadoyan.versions.beta;
+package xiangstudenthsadoyan.commonImplemenations;
 
 import xiangqi.common.*;
-
-import java.util.Objects;
 
 /**
  * Created by gnomeftlc on 2/9/17.
@@ -37,17 +35,10 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
     public boolean isOrthogonal(XiangqiCoordinate c2){
         return (getRank() == c2.getRank() || getFile() == c2.getFile());
     }
-    public boolean isDiagonallyAdjascent(XiangqiCoordinate c2){
+    public boolean isDiagonallyAdjacent(XiangqiCoordinate c2){
         return isDiagonal(c2) && (distanceTo(c2) == 2);
     }
 
-    public boolean inPalace(XiangqiColor currentTurn){
-        if(currentTurn == XiangqiColor.RED) {
-            return getRank() == 1 && getFile() >= 2 && getFile() <= 4;
-        } else {
-            return getRank() == 5 && getFile() >= 2 && getFile() <= 4;
-        }
-    }
     public boolean isDiagonal(XiangqiCoordinate c2){
         return (Math.abs(getRank() - c2.getRank()) == Math.abs(getFile() - c2.getFile()));
 

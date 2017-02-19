@@ -6,6 +6,10 @@ import xiangqi.XiangqiGameFactory;
 import xiangqi.common.*;
 
 import static org.junit.Assert.*;
+import static xiangqi.common.XiangqiColor.BLACK;
+import static xiangqi.common.XiangqiColor.RED;
+import static xiangqi.common.XiangqiPieceType.*;
+import static xiangstudenthsadoyan.TestPiece.makePiece;
 
 /**
  * Created by gnomeftlc on 2/9/17.
@@ -13,32 +17,31 @@ import static org.junit.Assert.*;
 public class BetaXiangqiTestCases {
 
 
-     static class TestCoordinate implements XiangqiCoordinate {
 
-        int file;
-        int rank;
-        TestCoordinate(int rank, int file) {
-            this.file = file;
-            this.rank = rank;
-        }
-        public static XiangqiCoordinate makeCoordinate(int rank, int file){
-            return new TestCoordinate(rank, file);
-        }
+    private static XiangqiCoordinate c11 = TestCoordinate.makeCoordinate(1, 1),
+            c12 = TestCoordinate.makeCoordinate(1, 2), c13 = TestCoordinate.makeCoordinate(1, 3),
+            c14 = TestCoordinate.makeCoordinate(1, 4), c15 = TestCoordinate.makeCoordinate(1, 5),
+            c21 = TestCoordinate.makeCoordinate(2, 1), c22 = TestCoordinate.makeCoordinate(2, 2),
+            c23 = TestCoordinate.makeCoordinate(2, 3), c24 = TestCoordinate.makeCoordinate(2, 4),
+            c25 = TestCoordinate.makeCoordinate(2, 5), c31 = TestCoordinate.makeCoordinate(3, 1),
+            c32 = TestCoordinate.makeCoordinate(3, 2), c33 = TestCoordinate.makeCoordinate(3, 3),
+            c34 = TestCoordinate.makeCoordinate(3, 4), c35 = TestCoordinate.makeCoordinate(3, 5),
+            c41 = TestCoordinate.makeCoordinate(4, 1), c42 = TestCoordinate.makeCoordinate(4, 2),
+            c43 = TestCoordinate.makeCoordinate(4, 3), c44 = TestCoordinate.makeCoordinate(4, 4),
+            c45 = TestCoordinate.makeCoordinate(4, 5), c51 = TestCoordinate.makeCoordinate(5, 1),
+            c52 = TestCoordinate.makeCoordinate(5, 2), c53 = TestCoordinate.makeCoordinate(5, 3),
+            c54 = TestCoordinate.makeCoordinate(5, 4), c55 = TestCoordinate.makeCoordinate(5, 5);
 
-        @Override
-        public int getRank() {
-            return rank;
-        }
-
-        @Override
-        public int getFile() {
-            return file;
-        }
-    }
-
-
-
-
+    private static XiangqiPiece noPiece =
+            makePiece(XiangqiPieceType.NONE, XiangqiColor.NONE),
+            redChariot = makePiece(CHARIOT, RED),
+            redAdvisor = makePiece(ADVISOR, RED),
+            redGeneral = makePiece(GENERAL, RED),
+            redSoldier = makePiece(SOLDIER, RED),
+            blackChariot = makePiece(CHARIOT, BLACK),
+            blackAdvisor = makePiece(ADVISOR, BLACK),
+            blackGeneral = makePiece(GENERAL, BLACK),
+            blackSoldier = makePiece(SOLDIER, BLACK);
     private XiangqiGame game;
 
     @Before
@@ -53,99 +56,103 @@ public class BetaXiangqiTestCases {
 
     @Test //2
     public void validateEmptyLocationReturnsEmpty(){
-        final XiangqiPiece p = game.getPieceAt(TestCoordinate.makeCoordinate(2, 2), XiangqiColor.RED);
+        final XiangqiPiece p = game.getPieceAt(TestCoordinate.makeCoordinate(2, 2), RED);
         assertEquals(XiangqiPieceType.NONE, p.getPieceType());
         assertEquals(XiangqiColor.NONE, p.getColor());
     }
     @Test //3
     public void validateRedGeneralAt13(){
-        final XiangqiPiece p = game.getPieceAt(TestCoordinate.makeCoordinate(1, 3), XiangqiColor.RED);
-        assertEquals(XiangqiPieceType.GENERAL, p.getPieceType());
-        assertEquals(XiangqiColor.RED, p.getColor());
+        final XiangqiPiece p = game.getPieceAt(TestCoordinate.makeCoordinate(1, 3), RED);
+        assertEquals(GENERAL, p.getPieceType());
+        assertEquals(RED, p.getColor());
     }
     @Test //4
     public void validateBlackGeneralAt13(){
-        final XiangqiPiece p = game.getPieceAt(TestCoordinate.makeCoordinate(1, 3), XiangqiColor.BLACK);
-        assertEquals(XiangqiPieceType.GENERAL, p.getPieceType());
-        assertEquals(XiangqiColor.BLACK, p.getColor());
+        final XiangqiPiece p = game.getPieceAt(TestCoordinate.makeCoordinate(1, 3), BLACK);
+        assertEquals(GENERAL, p.getPieceType());
+        assertEquals(BLACK, p.getColor());
     }
 
     @Test //5
     public void validateStartingRedPiecesInCorrectSpot() {
 
-        final XiangqiPiece general = game.getPieceAt(TestCoordinate.makeCoordinate(1, 3), XiangqiColor.RED);
-        assertEquals(XiangqiPieceType.GENERAL, general.getPieceType());
-        assertEquals(XiangqiColor.RED, general.getColor());
+        final XiangqiPiece general = game.getPieceAt(TestCoordinate.makeCoordinate(1, 3), RED);
+        assertEquals(GENERAL, general.getPieceType());
+        assertEquals(RED, general.getColor());
 
-        final XiangqiPiece chariot = game.getPieceAt(TestCoordinate.makeCoordinate(1, 1), XiangqiColor.RED);
-        assertEquals(XiangqiPieceType.CHARIOT, chariot.getPieceType());
-        assertEquals(XiangqiColor.RED, chariot.getColor());
+        final XiangqiPiece chariot = game.getPieceAt(TestCoordinate.makeCoordinate(1, 1), RED);
+        assertEquals(CHARIOT, chariot.getPieceType());
+        assertEquals(RED, chariot.getColor());
 
-        final XiangqiPiece advisor = game.getPieceAt(TestCoordinate.makeCoordinate(1, 2), XiangqiColor.RED);
-        assertEquals(XiangqiPieceType.ADVISOR, advisor.getPieceType());
-        assertEquals(XiangqiColor.RED, advisor.getColor());
+        final XiangqiPiece advisor = game.getPieceAt(TestCoordinate.makeCoordinate(1, 2), RED);
+        assertEquals(ADVISOR, advisor.getPieceType());
+        assertEquals(RED, advisor.getColor());
 
-        final XiangqiPiece advisor2 = game.getPieceAt(TestCoordinate.makeCoordinate(1, 4), XiangqiColor.RED);
-        assertEquals(XiangqiPieceType.ADVISOR, advisor2.getPieceType());
-        assertEquals(XiangqiColor.RED, advisor2.getColor());
+        final XiangqiPiece advisor2 = game.getPieceAt(TestCoordinate.makeCoordinate(1, 4), RED);
+        assertEquals(ADVISOR, advisor2.getPieceType());
+        assertEquals(RED, advisor2.getColor());
 
-        final XiangqiPiece chariot2 = game.getPieceAt(TestCoordinate.makeCoordinate(1, 5), XiangqiColor.RED);
-        assertEquals(XiangqiPieceType.CHARIOT, chariot2.getPieceType());
-        assertEquals(XiangqiColor.RED, chariot2.getColor());
+        final XiangqiPiece chariot2 = game.getPieceAt(TestCoordinate.makeCoordinate(1, 5), RED);
+        assertEquals(CHARIOT, chariot2.getPieceType());
+        assertEquals(RED, chariot2.getColor());
 
-        final XiangqiPiece soldier = game.getPieceAt(TestCoordinate.makeCoordinate(2, 3), XiangqiColor.RED);
-        assertEquals(XiangqiPieceType.SOLDIER, soldier.getPieceType());
-        assertEquals(XiangqiColor.RED, soldier.getColor());
+        final XiangqiPiece soldier = game.getPieceAt(TestCoordinate.makeCoordinate(2, 3), RED);
+        assertEquals(SOLDIER, soldier.getPieceType());
+        assertEquals(RED, soldier.getColor());
     }
 
 
     @Test //6
     public void validateStartingBlackPiecesInCorrectSpot() {
 
-        final XiangqiPiece general = game.getPieceAt(TestCoordinate.makeCoordinate(1, 3), XiangqiColor.BLACK);
-        assertEquals(XiangqiPieceType.GENERAL, general.getPieceType());
-        assertEquals(XiangqiColor.BLACK, general.getColor());
+        final XiangqiPiece general = game.getPieceAt(TestCoordinate.makeCoordinate(1, 3), BLACK);
+        assertEquals(GENERAL, general.getPieceType());
+        assertEquals(BLACK, general.getColor());
 
-        final XiangqiPiece chariot = game.getPieceAt(TestCoordinate.makeCoordinate(1, 1), XiangqiColor.BLACK);
-        assertEquals(XiangqiPieceType.CHARIOT, chariot.getPieceType());
-        assertEquals(XiangqiColor.BLACK, chariot.getColor());
+        final XiangqiPiece chariot = game.getPieceAt(TestCoordinate.makeCoordinate(1, 1), BLACK);
+        assertEquals(CHARIOT, chariot.getPieceType());
+        assertEquals(BLACK, chariot.getColor());
 
-        final XiangqiPiece advisor = game.getPieceAt(TestCoordinate.makeCoordinate(1, 2), XiangqiColor.BLACK);
-        assertEquals(XiangqiPieceType.ADVISOR, advisor.getPieceType());
-        assertEquals(XiangqiColor.BLACK, advisor.getColor());
+        final XiangqiPiece advisor = game.getPieceAt(TestCoordinate.makeCoordinate(1, 2), BLACK);
+        assertEquals(ADVISOR, advisor.getPieceType());
+        assertEquals(BLACK, advisor.getColor());
 
-        final XiangqiPiece advisor2 = game.getPieceAt(TestCoordinate.makeCoordinate(1, 4), XiangqiColor.BLACK);
-        assertEquals(XiangqiPieceType.ADVISOR, advisor2.getPieceType());
-        assertEquals(XiangqiColor.BLACK, advisor2.getColor());
+        final XiangqiPiece advisor2 = game.getPieceAt(TestCoordinate.makeCoordinate(1, 4), BLACK);
+        assertEquals(ADVISOR, advisor2.getPieceType());
+        assertEquals(BLACK, advisor2.getColor());
 
-        final XiangqiPiece chariot2 = game.getPieceAt(TestCoordinate.makeCoordinate(1, 5), XiangqiColor.BLACK);
-        assertEquals(XiangqiPieceType.CHARIOT, chariot2.getPieceType());
-        assertEquals(XiangqiColor.BLACK, chariot2.getColor());
+        final XiangqiPiece chariot2 = game.getPieceAt(TestCoordinate.makeCoordinate(1, 5), BLACK);
+        assertEquals(CHARIOT, chariot2.getPieceType());
+        assertEquals(BLACK, chariot2.getColor());
 
-        final XiangqiPiece soldier = game.getPieceAt(TestCoordinate.makeCoordinate(2, 3), XiangqiColor.BLACK);
-        assertEquals(XiangqiPieceType.SOLDIER, soldier.getPieceType());
-        assertEquals(XiangqiColor.BLACK, soldier.getColor());
+        final XiangqiPiece soldier = game.getPieceAt(TestCoordinate.makeCoordinate(2, 3), BLACK);
+        assertEquals(SOLDIER, soldier.getPieceType());
+        assertEquals(BLACK, soldier.getColor());
     }
 
     @Test //7
     public void testInvalidCoordinateOutOfBounds() {
         assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(0, 1), TestCoordinate.makeCoordinate(1, 1)));
-//        assertEquals("OUT OF BOUNDS", game.getMoveMessage());
+        assertEquals("OUT OF BOUNDS", game.getMoveMessage());
 
         assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(7, 0), TestCoordinate.makeCoordinate(1, 1)));
-  //      assertEquals("OUT OF BOUNDS", game.getMoveMessage());
+        //      assertEquals("OUT OF BOUNDS", game.getMoveMessage());
 
         assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(0, 0), TestCoordinate.makeCoordinate(1, 7)));
-//        assertEquals("OUT OF BOUNDS", game.getMoveMessage());
+        //       assertEquals("OUT OF BOUNDS", game.getMoveMessage());
 
         assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(0, 0), TestCoordinate.makeCoordinate(0, 1)));
-  //      assertEquals("OUT OF BOUNDS", game.getMoveMessage());
+        //       assertEquals("OUT OF BOUNDS", game.getMoveMessage());
     }
 
+    @Test
+    public void validateGeneralCantLeavePalace(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(1, 3), TestCoordinate.makeCoordinate(2, 3)));
+    }
     @Test //8
     public void validateMoveOnEmptyLocation(){
         assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(2,2), TestCoordinate.makeCoordinate(3, 3)));
-        //assertEquals("No Piece At Source", game.getMoveMessage());
+        assertEquals("No Piece At Source", game.getMoveMessage());
     }
     @Test //9
     public void validateIllegalPawnMoves(){
@@ -259,7 +266,7 @@ public class BetaXiangqiTestCases {
         game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
         game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(3, 5)));
-        assertEquals(XiangqiColor.RED, game.getPieceAt(TestCoordinate.makeCoordinate(3, 5), XiangqiColor.RED).getColor());
+        assertEquals(RED, game.getPieceAt(TestCoordinate.makeCoordinate(3, 5), RED).getColor());
 
     }
 
@@ -281,6 +288,16 @@ public class BetaXiangqiTestCases {
     }
 
     @Test
+    public void validateBlackPawnCantMoveBac(){
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(5, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 5), TestCoordinate.makeCoordinate(2, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 3), TestCoordinate.makeCoordinate(1, 2)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(2, 5), TestCoordinate.makeCoordinate(3, 5)));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(TestCoordinate.makeCoordinate(2, 3), TestCoordinate.makeCoordinate(1, 3)));
+    }
+
+    @Test
     public void validateCheckmateIfKingUnderAttackAndCantMove(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(5, 1)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
@@ -289,8 +306,17 @@ public class BetaXiangqiTestCases {
 
         assertEquals(MoveResult.RED_WINS, game.makeMove(TestCoordinate.makeCoordinate(5, 1), TestCoordinate.makeCoordinate(5, 2)));
     }
+    @Test
+    public void validateCheckmateIfKingUnderAttackAndCantMoveBlack(){
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(5, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 5), TestCoordinate.makeCoordinate(2, 5)));
+        assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 3), TestCoordinate.makeCoordinate(1, 2)));
 
-/*    @Test
+        assertEquals(MoveResult.BLACK_WINS, game.makeMove(TestCoordinate.makeCoordinate(5, 1), TestCoordinate.makeCoordinate(5, 2)));
+    }
+    @Test
     public void validateNotCheckmateIfKingCanRunAway(){
 
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
@@ -298,7 +324,40 @@ public class BetaXiangqiTestCases {
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 5), TestCoordinate.makeCoordinate(2, 5)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(2, 3), TestCoordinate.makeCoordinate(3, 3)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(3, 3)));
-    }*/
+    }
+
+    @Test
+    public void validateFlyingGeneralsMove(){
+        assertEquals(MoveResult.OK, game.makeMove(c23, c33));
+        assertEquals(MoveResult.OK, game.makeMove(c23, c33));
+        assertEquals(MoveResult.OK, game.makeMove(c12, c23));
+        assertEquals(MoveResult.OK, game.makeMove(c14, c23));
+        assertEquals(MoveResult.OK, game.makeMove(c13, c12));
+        assertEquals(MoveResult.RED_WINS, game.makeMove(c13, c14));
+    }
+
+
+    @Test
+    public void validateCantExposeGeneralToCheck(){
+        assertEquals(MoveResult.OK, game.makeMove(c23, c33));
+        assertEquals(MoveResult.OK, game.makeMove(c23, c33));
+        assertEquals(MoveResult.OK, game.makeMove(c12, c23));
+        assertEquals(MoveResult.OK, game.makeMove(c12, c23));
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.OK, game.makeMove(c31, c33));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c23, c12));
+    }
+
+    @Test
+    public void validateNoCheckmateIfPieceCanBlockOrTake(){
+        assertEquals(MoveResult.OK, game.makeMove(c23, c33));
+        assertEquals(MoveResult.OK, game.makeMove(c23, c33));
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.OK, game.makeMove(c33, c43));
+    }
+
+
 
 
 

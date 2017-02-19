@@ -16,6 +16,7 @@ import xiangqi.common.*;
 import xiangstudenthsadoyan.AlphaXiangqiTestCases;
 import xiangstudenthsadoyan.versions.alphaxiangqi.AlphaXiangqiGame;
 import xiangstudenthsadoyan.versions.beta.BetaXiangqiGame;
+import xiangstudenthsadoyan.versions.gamma.GammaXiangqiGame;
 
 /**
  * A simple factory object that creates the appropriate instance of a XiangqiGame.
@@ -35,6 +36,8 @@ public class XiangqiGameFactory
 				return new AlphaXiangqiGame();
 			case BETA_XQ:
 				return new BetaXiangqiGame();
+			case GAMMA_XQ:
+				return new GammaXiangqiGame();
 			default:
 				return null;
 		}

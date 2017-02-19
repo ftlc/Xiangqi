@@ -1,9 +1,6 @@
-package xiangstudenthsadoyan.versions.beta;
-
-import xiangqi.common.XiangqiColor;
+package xiangstudenthsadoyan.commonImplemenations;
 
 import java.util.*;
-import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 
 /**
@@ -31,6 +28,7 @@ public class ValidateFactory {
 
         List<Predicate<State>> validators = new LinkedList<Predicate<State>>();
 
+        validators.add(checkInBounds);
         validators.add(pieceAtSource);
         validators.add(moveOnOwnPiece);
         switch (piece.getPieceType()) {
@@ -50,6 +48,7 @@ public class ValidateFactory {
                 validators.add(adjascentStateValidator);
                 validators.add(inGeneralsPalaceStateValidator);
                 validators.add(noPiecesInBetween);
+  //              validators.add(destinationNotUnderAttack);
                 break;
             case CHARIOT:
                 validators.add(orthogonalStateValidator);

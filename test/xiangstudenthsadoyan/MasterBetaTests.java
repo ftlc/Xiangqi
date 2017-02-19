@@ -19,6 +19,9 @@ import static xiangqi.common.XiangqiColor.*;
 import static xiangqi.common.XiangqiPieceType.*;
 import static org.junit.Assert.*;
 import static xiangqi.common.MoveResult.*;
+import static xiangstudenthsadoyan.TestCoordinate.makeCoordinate;
+import static xiangstudenthsadoyan.TestPiece.makePiece;
+
 import org.junit.*;
 import xiangqi.XiangqiGameFactory;
 import xiangqi.common.*;
@@ -186,79 +189,6 @@ public class MasterBetaTests
 		assertEquals(ILLEGAL, game.makeMove(c13, c22));
 	}
 
-	// Helper methods
-	private static XiangqiCoordinate makeCoordinate(int rank, int file)
-	{
-		return new TestCoordinate(rank, file);
-	}
-
-	public static XiangqiPiece makePiece(XiangqiPieceType pieceType, XiangqiColor color)
-	{
-		return new TestPiece(pieceType, color);
-	}
 }
 
-class TestCoordinate implements XiangqiCoordinate
-{
-	private final int rank;
-	private final int file;
 
-	public TestCoordinate(int rank, int file)
-	{
-		this.rank = rank;
-		this.file = file;
-	}
-
-	@Override
-	public int getRank()
-	{
-		return rank;
-	}
-
-	@Override
-	public int getFile()
-	{
-		return file;
-	}
-}
-
-class TestPiece implements XiangqiPiece
-{
-	private final XiangqiColor color;
-	private final XiangqiPieceType pieceType;
-
-	public TestPiece(XiangqiPieceType pieceType, XiangqiColor color)
-	{
-		this.pieceType = pieceType;
-		this.color = color;
-	}
-
-	/*
-	 * @see xiangqi.common.XiangqiPiece#getColor()
-	 */
-	@Override
-	public XiangqiColor getColor()
-	{
-		return color;
-	}
-
-	/*
-	 * @see xiangqi.common.XiangqiPiece#getPieceType()
-	 */
-	@Override
-	public XiangqiPieceType getPieceType()
-	{
-		return pieceType;
-	}
-
-	@Override
-	public boolean equals(Object obj)
-	{
-		XiangqiPiece other = (XiangqiPiece) obj;
-		if (color != other.getColor())
-			return false;
-		if (pieceType != other.getPieceType())
-			return false;
-		return true;
-	}
-}
