@@ -62,15 +62,8 @@ public class GammaXiangqiGame implements XiangqiGame {
             }
 
 
-            board.movePiece(newSource, newDest);
+            moveState.movePiece(newSource, newDest);
             moveNumber++;
-            if(moveState.canGeneralsSeeEachOther()){
-                if (currentTurn == XiangqiColor.BLACK) {
-                    return MoveResult.RED_WINS;
-                } else {
-                    return MoveResult.BLACK_WINS;
-                }
-            }
             if(checkmate(moveState)) {
                 if (currentTurn == XiangqiColor.RED) {
                     return MoveResult.RED_WINS;
@@ -99,7 +92,8 @@ public class GammaXiangqiGame implements XiangqiGame {
         XiangqiCoordinateImp kinglocation = state.getKingsLocation(getOppositeColor(currentTurn));
 
 
-        if(isLocationUnderAttack(state, kinglocation)){
+        if(isGeneralUnderAttack(state, getOppositeColor(currentTurn))){
+                //isLocationUnderAttack(state, kinglocation)){
             return !anyValidMoves(state, kinglocation);
         } else {
             return false;
@@ -140,7 +134,7 @@ public class GammaXiangqiGame implements XiangqiGame {
 
         XiangqiPieceImp piece = XiangqiPieceImp.copyConstructor(board.getPieceAt(state.getSource()));
 
-        final List<Predicate<State>> stateValidators = ValidateFactory.makeStateValidators(piece);
+        final List<Predicate<State>> stateValidators = ValidateFactory.makeGammaValidators(piece, state);
         for(Predicate<State> p: stateValidators){
             if(!p.test(state)){
                 setMoveMessage(state.getMoveMessage());
@@ -153,7 +147,7 @@ public class GammaXiangqiGame implements XiangqiGame {
 
     public boolean isGeneralUnderAttack(State ghostState, XiangqiColor kingColor){
         XiangqiCoordinateImp kinglocation = ghostState.getKingsLocation(kingColor);
-        return isLocationUnderAttack(ghostState, kinglocation);
+        return isLocationUnderAttack(ghostState, kinglocation) || ghostState.flyingGeneral();
     }
 
     private boolean isLocationUnderAttack(State theState, XiangqiCoordinateImp location){
@@ -175,10 +169,9 @@ public class GammaXiangqiGame implements XiangqiGame {
     private XiangqiColor getOppositeColor(XiangqiColor color){
         if(color == XiangqiColor.RED) {
             return XiangqiColor.BLACK;
-        } else if(color == XiangqiColor.BLACK){
-            return XiangqiColor.RED;
         } else {
-            return XiangqiColor.NONE;
+                return XiangqiColor.RED;
+
         }
     }
 

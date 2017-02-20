@@ -48,6 +48,7 @@ public class State {
 
     public void movePiece(XiangqiCoordinateImp src, XiangqiCoordinateImp dest){
         board.movePiece(src, dest);
+        source = dest;
     }
     public XiangqiColor getAspect() {
         return aspect;
@@ -112,8 +113,7 @@ public class State {
 
     public boolean inPalace(){
         if(!board.inPalace(destination)){
-        //if(!destination.inPalace()){
-            setMoveMessage("General Can't Leave Palace");
+            setMoveMessage(board.getPieceAt(source) + " Can't Leave Palace");
             return false;
         }
         return true;
@@ -147,6 +147,27 @@ public class State {
         this.aspect = aspect;
     }
 
+
+    public boolean notCrossingTheRiver(){
+        if(!board.notCrossingTheRiver(source, destination, aspect)){
+            setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isNotBackward(){
+        if(!(source.isNotBackWard(destination, aspect))){
+            setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean flyingGeneral(){
+        return noPiecesInBetween(board.getKingsLocation(XiangqiColor.BLACK), board.getKingsLocation(XiangqiColor.RED));
+    }
+
     public boolean isForward(){
         if(!(source.isForward(destination, aspect))){
             setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
@@ -177,6 +198,7 @@ public class State {
         }
 
     }
+
 
     public boolean noPiecesInBetween(XiangqiCoordinateImp source, XiangqiCoordinateImp dest){
 

@@ -139,7 +139,7 @@ public class BetaXiangqiGame implements XiangqiGame {
 
         XiangqiPieceImp piece = XiangqiPieceImp.copyConstructor(board.getPieceAt(state.getSource()));
 
-        final List<Predicate<State>> stateValidators = ValidateFactory.makeStateValidators(piece);
+        final List<Predicate<State>> stateValidators = ValidateFactory.makeBetaValidators(piece);
         for(Predicate<State> p: stateValidators){
             if(!p.test(state)){
                 setMoveMessage(state.getMoveMessage());

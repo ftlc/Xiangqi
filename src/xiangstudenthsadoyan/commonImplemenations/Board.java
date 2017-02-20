@@ -20,8 +20,8 @@ public class Board {
     public static Board copyConstructor(Board b){
         Board newBoard = new Board(b.version);
         newBoard.board = new HashMap<XiangqiCoordinateImp, XiangqiPieceImp>(b.board);
-        newBoard.numRanks = 5;
-        newBoard.numFiles = 5;
+        newBoard.numRanks = b.getNumRanks();
+        newBoard.numFiles = b.getNumFiles();
         return newBoard;
     }
 
@@ -129,13 +129,36 @@ public class Board {
         return null;
     }
 
+    public boolean isAcrossTheRiver(XiangqiCoordinateImp c, XiangqiColor aspect){
+        if(aspect == XiangqiColor.RED){
+           if(c.getRank() > 5){
+               return true;
+           }
+        }
+        if(aspect == XiangqiColor.BLACK){
+            if(c.getRank() <=5){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean notCrossingTheRiver(XiangqiCoordinateImp source, XiangqiCoordinateImp dest, XiangqiColor aspect){
+        if(source.getRank() > 5 && dest.getRank() <= 5){
+            return false;
+        }
+        if(source.getRank() <=5 && dest.getRank() > 5){
+            return false;
+        }
+        return true;
+    }
 
     public boolean inPalace(XiangqiCoordinateImp c){
         if(version == XiangqiGameVersion.BETA_XQ) {
             return (c.getRank() == 1 || c.getRank() == 5) && c.getFile() >= 2 && c.getFile() <= 4;
         }
         if(version == XiangqiGameVersion.GAMMA_XQ) {
-            return (c.getRank() >=9 || c.getRank() <= 2) && c.getFile() >= 4 && c.getFile() <= 6;
+            return (c.getRank() >=8 || c.getRank() <= 3) && c.getFile() >= 4 && c.getFile() <= 6;
         }
 
         return false;

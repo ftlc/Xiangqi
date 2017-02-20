@@ -83,11 +83,19 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
     }
 
 
-    public boolean isForward(XiangqiCoordinate c2, XiangqiColor color){
-        if(color == XiangqiColor.RED) {
-            return c2.getRank() > getRank() && c2.getFile() == getFile();
+    public boolean isNotBackWard(XiangqiCoordinateImp c2, XiangqiColor aspect){
+        if(aspect == XiangqiColor.RED){
+            return c2.getRank() >= getRank();
         } else {
-            return c2.getRank() < getRank() && c2.getFile() == getFile();
+            return c2.getRank() <= getRank();
+        }
+    }
+
+    public boolean isForward(XiangqiCoordinateImp c2, XiangqiColor aspect){
+        if(aspect == XiangqiColor.RED) {
+            return isNotBackWard(c2, aspect) && c2.getFile() == getFile();
+        } else {
+            return isNotBackWard(c2, aspect) && c2.getFile() == getFile();
         }
     }
 

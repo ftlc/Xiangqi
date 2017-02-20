@@ -288,7 +288,7 @@ public class BetaXiangqiTestCases {
     }
 
     @Test
-    public void validateBlackPawnCantMoveBac(){
+    public void validateBlackPawnCantMoveBack(){
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(5, 1)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 2), TestCoordinate.makeCoordinate(2, 1)));
         assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1, 5), TestCoordinate.makeCoordinate(2, 5)));

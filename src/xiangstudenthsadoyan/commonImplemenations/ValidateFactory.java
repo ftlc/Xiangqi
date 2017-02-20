@@ -21,12 +21,29 @@ public class ValidateFactory {
     private static Predicate<State> moveOnOwnPiece = (State s) -> s.moveOnOwnPiece();
     private static Predicate<State> noPiecesInBetween = (State s) -> s.noPiecesInBetween();
     private static Predicate<State> checkInBounds = (State s) -> s.isInBounds();
+    private static Predicate<State> distanceIsFour = (State s) -> s.getSource().distanceTo(s.getDestination()) == 4;
+    private static Predicate<State> cantCrossRiver = (State s) -> s.notCrossingTheRiver();
+    private static Predicate<State> isNotBackward = (State s) -> s.isNotBackward();
+  //  private static Predicate<State> BetaInPalaceValidator = (State s) -> (c.getRank() == 1 || c.getRank() == 5) && c.getFile() >= 2 && c.getFile() <= 4;
 
 
-    public static List<Predicate<State>> makeStateValidators(XiangqiPieceImp piece){
+    public static List<Predicate<State>> makeBetaValidators(XiangqiPieceImp piece){
 
+
+        List<Predicate<State>> validators = addCommonValidators(piece);
+
+        switch (piece.getPieceType()) {
+            case SOLDIER:
+                validators.add(moveForwardStateValidator);
+        }
+
+        return validators;
+    }
+
+    private static List<Predicate<State>> addCommonValidators(XiangqiPieceImp piece){
 
         List<Predicate<State>> validators = new LinkedList<Predicate<State>>();
+
 
         validators.add(checkInBounds);
         validators.add(pieceAtSource);
@@ -36,7 +53,6 @@ public class ValidateFactory {
                 validators.add(noPiecesInBetween);
                 validators.add(orthogonalStateValidator);
                 validators.add(adjascentStateValidator);
-                validators.add(moveForwardStateValidator);
                 break;
             case ADVISOR:
                 validators.add(diagonalStateValidator);
@@ -48,12 +64,38 @@ public class ValidateFactory {
                 validators.add(adjascentStateValidator);
                 validators.add(inGeneralsPalaceStateValidator);
                 validators.add(noPiecesInBetween);
-  //              validators.add(destinationNotUnderAttack);
                 break;
             case CHARIOT:
                 validators.add(orthogonalStateValidator);
                 validators.add(differentStateXiangqiCoordinateImpValidator);
                 validators.add(noPiecesInBetween);
+                break;
+        }
+
+
+        return validators;
+    }
+
+    public static List<Predicate<State>> makeGammaValidators(XiangqiPieceImp piece, State s){
+
+        List<Predicate<State>> validators = addCommonValidators(piece);
+
+        switch (piece.getPieceType()){
+            case ADVISOR:
+                validators.add(inGeneralsPalaceStateValidator);
+                break;
+            case ELEPHANT:
+                validators.add(diagonalStateValidator);
+                validators.add(distanceIsFour);
+                validators.add(noPiecesInBetween);
+                validators.add(cantCrossRiver);
+                break;
+            case SOLDIER:
+                if(s.getBoard().isAcrossTheRiver(s.getSource(), s.getAspect())){
+                    validators.add(isNotBackward);
+                } else {
+                    validators.add(moveForwardStateValidator);
+                }
                 break;
         }
 

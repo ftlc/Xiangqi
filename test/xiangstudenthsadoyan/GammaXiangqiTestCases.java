@@ -246,4 +246,219 @@ public class GammaXiangqiTestCases {
     public void validateLegalAdvisorMovesRed(){
         assertEquals(MoveResult.OK, game.makeMove(c14, c25));
     }
+
+    @Test
+    public void validateIllegalAdvisorMovesRed(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c14, c23));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c14, c24));
+    }
+
+
+    @Test //13
+    public void validateLegalAdvisorMovesBlack(){
+        assertEquals(MoveResult.OK, game.makeMove(c14, c25));
+        assertEquals(MoveResult.OK, game.makeMove(c14, c25));
+    }
+
+    @Test
+    public void validateIllegalAdvisorMovesBlack(){
+        assertEquals(MoveResult.OK, game.makeMove(c14, c25));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c14, c23));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c14, c24));
+    }
+
+
+    @Test
+    public void validateLegalChariotMovesRed(){
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+    }
+
+    @Test
+    public void validateIllegalChariotMovesRed(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c11, c22));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c11, c51));
+    }
+    @Test
+    public void validateLegalChariotMovesBlack(){
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+    }
+
+    @Test
+    public void validateIllegalChariotMovesBlack(){
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c11, c22));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c11, c51));
+    }
+    @Test
+    public void validateMoveIsSaved(){
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.OK, game.makeMove(c31, c33));
+    }
+
+
+    @Test
+    public void validateCorrectTurnOrder(){
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c101, c91));
+        assertEquals("Piece Wrong Color", game.getMoveMessage());
+        assertEquals(MoveResult.OK, game.makeMove(c11, c31));
+        assertEquals(MoveResult.OK, game.makeMove(c31, c33));
+    }
+
+    @Test
+    public void validateDrawAfterTwentyFiveTurns(){
+
+        for(int i = 0; i < 12; i++) {
+            game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
+            game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
+            game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1));
+            game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1));
+        }
+
+        assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
+        assertEquals(MoveResult.DRAW,game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
+    }
+
+    @Test
+    public void validateCapture(){
+
+        game.makeMove(c45, c55);
+        game.makeMove(c45, c55);
+        assertEquals(MoveResult.OK, game.makeMove(c55, c65));
+        assertEquals(XiangqiColor.RED, game.getPieceAt(c65, RED).getColor());
+    }
+
+
+    @Test
+    public void validateCantCaptureOwnPiece(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c11, c13));
+        assertEquals("Can't Capture Your Own Piece", game.getMoveMessage());
+    }
+
+    @Test
+    public void validateCantJumpOverPieces(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c11, c51));
+        assertEquals("Can't Jump Over A Piece", game.getMoveMessage());
+    }
+
+    @Test
+    public void validatePawnCantMoveBack(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c41, c31));
+    }
+
+    @Test
+    public void validateIllegalElephantMove(){
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c13, c24));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c13, c23));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c13, c22));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c13, c46));
+    }
+
+    @Test
+    public void validateLegalElephantMove(){
+        assertEquals(MoveResult.OK, game.makeMove(c13, c35));
+        assertEquals(MoveResult.OK, game.makeMove(c13, c31));
+    }
+
+    @Test
+    public void validateElephantCantCrossRiver(){
+        assertEquals(MoveResult.OK, game.makeMove(c13, c35));
+        assertEquals(MoveResult.OK, game.makeMove(c13, c35));
+        assertEquals(MoveResult.OK, game.makeMove(c35, c53));
+        assertEquals(MoveResult.OK, game.makeMove(c35, c53));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c53, c37));
+    }
+    @Test
+    public void valdiateSoldierCanMoveHorizontallyAfterCrossingRiver(){
+
+        assertEquals(MoveResult.OK, game.makeMove(c15,
+                c25));
+        assertEquals(MoveResult.OK, game.makeMove(c15,
+                c25));
+        assertEquals(MoveResult.OK, game.makeMove(c25,
+                c24));
+        assertEquals(MoveResult.OK, game.makeMove(c25,
+                c15));
+        assertEquals(MoveResult.OK, game.makeMove(c45,
+                c55));
+        assertEquals(MoveResult.OK, game.makeMove(c45,
+                c55));
+        assertEquals(MoveResult.OK, game.makeMove(c55,
+                c65));
+        assertEquals(MoveResult.OK, game.makeMove(c11,
+                c21));
+        assertEquals(MoveResult.OK, game.makeMove(c65,
+                c66));
+    }
+
+    @Test
+    public void validateFlyingGeneralsMove(){
+		assertEquals(MoveResult.OK, game.makeMove(c15,
+				c25));
+		assertEquals(MoveResult.OK, game.makeMove(c15,
+				c25));
+		assertEquals(MoveResult.OK, game.makeMove(c25,
+				c24));
+		assertEquals(MoveResult.ILLEGAL, game.makeMove(c25, c26));
+    }
+
+    @Test
+    public void validateCheckMate(){
+        assertEquals(MoveResult.OK, game.makeMove(c41, c51));
+        assertEquals(MoveResult.OK, game.makeMove(c49, c59));
+        assertEquals(MoveResult.OK, game.makeMove(c51, c61));
+        assertEquals(MoveResult.OK, game.makeMove(c19, c59));
+        assertEquals(MoveResult.OK, game.makeMove(c11, c61));
+        assertEquals(MoveResult.OK, game.makeMove(c16, c25));
+        assertEquals(MoveResult.OK, game.makeMove(c61, c101));
+        assertEquals(MoveResult.OK, game.makeMove(c25, c34));
+        assertEquals(MoveResult.OK, game.makeMove(c49, c59));
+        assertEquals(MoveResult.OK, game.makeMove(c41, c51));
+        assertEquals(MoveResult.OK, game.makeMove(c59, c69));
+        assertEquals(MoveResult.OK, game.makeMove(c11, c51));
+        assertEquals(MoveResult.OK, game.makeMove(c19, c69));
+        assertEquals(MoveResult.OK, game.makeMove(c45, c55));
+        assertEquals(MoveResult.OK, game.makeMove(c69, c99));
+        assertEquals(MoveResult.OK, game.makeMove(c55, c65));
+        assertEquals(MoveResult.RED_WINS, game.makeMove(c101, c103));
+    }
+
+    @Test // 20
+	public void redLoosesByFlyingGeneralCheckmate(){
+		// red moves general forward one
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,5),
+				TestCoordinate.makeCoordinate(2, 5)));
+		// black mirrors
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,5),
+				TestCoordinate.makeCoordinate(2, 5)));
+		// red moves general left
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(2,5),
+				TestCoordinate.makeCoordinate(2, 4)));
+		// black moves general back to origin
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(2,5),
+				TestCoordinate.makeCoordinate(1, 5)));
+		// red moves middle soldier forward
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(4,5),
+				TestCoordinate.makeCoordinate(5, 5)));
+		// black mirrors
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(4,5),
+				TestCoordinate.makeCoordinate(5, 5)));
+		// red middle soldier crosses river and takes black soldier
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5,5),
+				TestCoordinate.makeCoordinate(6, 5)));
+		// black moves left chariot forward one
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1),
+				TestCoordinate.makeCoordinate(2, 1)));
+		// red moves middle soldier to the right one
+		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(6,5),
+				TestCoordinate.makeCoordinate(6, 6)));
+		// black checkmates red, moving left chariot to red general's file
+		assertEquals(MoveResult.BLACK_WINS, game.makeMove(TestCoordinate.makeCoordinate(2,1),
+				TestCoordinate.makeCoordinate(2,6)));
+	}
+
+
+
 }
