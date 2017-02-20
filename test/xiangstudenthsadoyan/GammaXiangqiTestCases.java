@@ -428,7 +428,7 @@ public class GammaXiangqiTestCases {
     }
 
     @Test
-	public void validateGeneralCanDefendChackmate(){
+	public void validateGeneralCanPreventEscapeCheckmate(){
 		assertEquals(MoveResult.OK, game.makeMove(c15,
 				c25));
 		assertEquals(MoveResult.OK, game.makeMove(c15,

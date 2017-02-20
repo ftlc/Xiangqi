@@ -150,7 +150,7 @@ public class State {
 
     public boolean notCrossingTheRiver(){
         if(!board.notCrossingTheRiver(source, destination, aspect)){
-            setMoveMessage(board.getPieceAt(source) + "Can't Cross the River");
+            setMoveMessage(board.getPieceAt(source) + " Can't Cross the River");
             return false;
         }
         return true;

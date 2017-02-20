@@ -4,7 +4,6 @@
     <list default="true" id="f1d69dfc-9681-4570-9709-2857339debe7" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/State.java" afterPath="$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/State.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/gamma/GammaXiangqiGame.java" afterPath="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/gamma/GammaXiangqiGame.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/xiangstudenthsadoyan/GammaXiangqiTestCases.java" afterPath="$PROJECT_DIR$/test/xiangstudenthsadoyan/GammaXiangqiTestCases.java" />
     </list>
     <ignored path="$PROJECT_DIR$/bin/" />
@@ -74,7 +73,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="ValidateFactory.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="ValidateFactory.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/ValidateFactory.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-1944">
@@ -87,28 +86,13 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="BetaXiangqiTestCases.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="BetaXiangqiTestCases.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="23">
                   <caret line="317" column="4" lean-forward="false" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="BetaXiangqiGame.java" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="6156">
-                  <caret line="179" column="10" lean-forward="false" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
-                  <folding>
-                    <element signature="e#638#639#0" expanded="false" />
-                    <element signature="e#666#667#0" expanded="false" />
-                    <element signature="e#704#705#0" expanded="false" />
-                    <element signature="e#734#735#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -144,11 +128,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="GammaXiangqiTestCases.java" pinned="false" current-in-tab="true">
+          <file leaf-file-name="GammaXiangqiTestCases.java" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/GammaXiangqiTestCases.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1044">
-                  <caret line="430" column="48" lean-forward="false" selection-start-line="430" selection-start-column="48" selection-end-line="430" selection-end-column="48" />
+                <state relative-caret-position="908">
+                  <caret line="430" column="46" lean-forward="false" selection-start-line="430" selection-start-column="46" selection-end-line="430" selection-end-column="46" />
                   <folding>
                     <element signature="imports" expanded="true" />
                     <element signature="e#14394#14395#0" expanded="true" />
@@ -158,11 +142,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="State.java" pinned="false" current-in-tab="false">
+          <file leaf-file-name="State.java" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/State.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-820">
-                  <caret line="166" column="0" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+                <state relative-caret-position="684">
+                  <caret line="152" column="55" lean-forward="false" selection-start-line="152" selection-start-column="55" selection-end-line="152" selection-end-column="55" />
                   <folding>
                     <element signature="e#1673#1674#0" expanded="true" />
                     <element signature="e#1702#1703#0" expanded="true" />
@@ -221,8 +205,8 @@
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/XiangqiCoordinateImp.java" />
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/Board.java" />
         <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/gamma/GammaXiangqiGame.java" />
-        <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/State.java" />
         <option value="$PROJECT_DIR$/test/xiangstudenthsadoyan/GammaXiangqiTestCases.java" />
+        <option value="$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/State.java" />
       </list>
     </option>
   </component>
@@ -958,7 +942,7 @@
       <workItem from="1486426941241" duration="1180000" />
       <workItem from="1486428182479" duration="58299000" />
       <workItem from="1487193804692" duration="60373000" />
-      <workItem from="1487555838856" duration="10789000" />
+      <workItem from="1487555838856" duration="11015000" />
     </task>
     <task id="LOCAL-00001" summary="ReadMe">
       <created>1486428224539</created>
@@ -1079,7 +1063,14 @@
       <option name="project" value="LOCAL" />
       <updated>1487566013044</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Finished Gamma (Minus stalemate) (complete)">
+      <created>1487566898361</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1487566898361</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1115,7 +1106,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="130641000" />
+    <option name="totallyTimeSpent" value="130867000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="35" width="3840" height="2059" extended-state="0" />
@@ -1209,7 +1200,8 @@
     <MESSAGE value="State Predicate Refactoring" />
     <MESSAGE value="Finish Beta/Start Gamma" />
     <MESSAGE value="Finished Gamma (Minus stalemate)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished Gamma (Minus stalemate)" />
+    <MESSAGE value="Finished Gamma (Minus stalemate) (complete)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Gamma (Minus stalemate) (complete)" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1280,10 +1272,7 @@
         <state relative-caret-position="6156">
           <caret line="179" column="10" lean-forward="false" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
           <folding>
-            <element signature="e#638#639#0" expanded="false" />
-            <element signature="e#666#667#0" expanded="false" />
-            <element signature="e#704#705#0" expanded="false" />
-            <element signature="e#734#735#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1315,10 +1304,7 @@
         <state relative-caret-position="3528">
           <caret line="102" column="0" lean-forward="false" selection-start-line="102" selection-start-column="0" selection-end-line="102" selection-end-column="0" />
           <folding>
-            <element signature="e#638#639#0" expanded="false" />
-            <element signature="e#666#667#0" expanded="false" />
-            <element signature="e#704#705#0" expanded="false" />
-            <element signature="e#734#735#0" expanded="false" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1596,19 +1582,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6156">
-          <caret line="179" column="10" lean-forward="false" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
-          <folding>
-            <element signature="e#638#639#0" expanded="false" />
-            <element signature="e#666#667#0" expanded="false" />
-            <element signature="e#704#705#0" expanded="false" />
-            <element signature="e#734#735#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/XiangqiPieceImp.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="684">
@@ -1618,29 +1591,6 @@
             <element signature="e#881#882#0" expanded="true" />
             <element signature="e#941#942#0" expanded="true" />
             <element signature="e#973#974#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="317" column="4" lean-forward="false" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/State.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-820">
-          <caret line="166" column="0" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
-          <folding>
-            <element signature="e#1673#1674#0" expanded="true" />
-            <element signature="e#1702#1703#0" expanded="true" />
-            <element signature="e#1840#1841#0" expanded="true" />
-            <element signature="e#1874#1875#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1662,6 +1612,18 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2141#2159#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/GammaXiangqiTestCases.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="908">
+          <caret line="430" column="46" lean-forward="false" selection-start-line="430" selection-start-column="46" selection-end-line="430" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#14394#14395#0" expanded="true" />
+            <element signature="e#14467#14468#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1688,14 +1650,35 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/GammaXiangqiTestCases.java">
+    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/versions/beta/BetaXiangqiGame.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1044">
-          <caret line="430" column="48" lean-forward="false" selection-start-line="430" selection-start-column="48" selection-end-line="430" selection-end-column="48" />
+        <state relative-caret-position="-36">
+          <caret line="179" column="10" lean-forward="false" selection-start-line="179" selection-start-column="10" selection-end-line="179" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#14394#14395#0" expanded="true" />
-            <element signature="e#14467#14468#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/xiangstudenthsadoyan/BetaXiangqiTestCases.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23">
+          <caret line="317" column="4" lean-forward="false" selection-start-line="317" selection-start-column="4" selection-end-line="317" selection-end-column="4" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/xiangstudenthsadoyan/commonImplemenations/State.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="152" column="55" lean-forward="false" selection-start-line="152" selection-start-column="55" selection-end-line="152" selection-end-column="55" />
+          <folding>
+            <element signature="e#1673#1674#0" expanded="true" />
+            <element signature="e#1702#1703#0" expanded="true" />
+            <element signature="e#1840#1841#0" expanded="true" />
+            <element signature="e#1874#1875#0" expanded="true" />
           </folding>
         </state>
       </provider>
