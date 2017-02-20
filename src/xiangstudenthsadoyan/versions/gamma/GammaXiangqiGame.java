@@ -147,7 +147,7 @@ public class GammaXiangqiGame implements XiangqiGame {
 
     public boolean isGeneralUnderAttack(State ghostState, XiangqiColor kingColor){
         XiangqiCoordinateImp kinglocation = ghostState.getKingsLocation(kingColor);
-        return isLocationUnderAttack(ghostState, kinglocation) || ghostState.flyingGeneral();
+        return isLocationUnderAttack(ghostState, kinglocation) || ghostState.canGeneralsSeeEachOther();
     }
 
     private boolean isLocationUnderAttack(State theState, XiangqiCoordinateImp location){

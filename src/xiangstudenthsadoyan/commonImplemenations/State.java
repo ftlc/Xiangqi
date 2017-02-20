@@ -150,7 +150,7 @@ public class State {
 
     public boolean notCrossingTheRiver(){
         if(!board.notCrossingTheRiver(source, destination, aspect)){
-            setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
+            setMoveMessage(board.getPieceAt(source) + "Can't Cross the River");
             return false;
         }
         return true;
@@ -164,9 +164,6 @@ public class State {
         return true;
     }
 
-    public boolean flyingGeneral(){
-        return noPiecesInBetween(board.getKingsLocation(XiangqiColor.BLACK), board.getKingsLocation(XiangqiColor.RED));
-    }
 
     public boolean isForward(){
         if(!(source.isForward(destination, aspect))){

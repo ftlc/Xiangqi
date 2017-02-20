@@ -368,10 +368,12 @@ public class GammaXiangqiTestCases {
         assertEquals(MoveResult.OK, game.makeMove(c13, c35));
         assertEquals(MoveResult.OK, game.makeMove(c35, c53));
         assertEquals(MoveResult.OK, game.makeMove(c35, c53));
-        assertEquals(MoveResult.ILLEGAL, game.makeMove(c53, c37));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c53, c75));
+        System.out.println(game.getMoveMessage());
     }
+
     @Test
-    public void valdiateSoldierCanMoveHorizontallyAfterCrossingRiver(){
+    public void validateSoldierCanMoveHorizontallyAfterCrossingRiver(){
 
         assertEquals(MoveResult.OK, game.makeMove(c15,
                 c25));
@@ -425,38 +427,28 @@ public class GammaXiangqiTestCases {
         assertEquals(MoveResult.RED_WINS, game.makeMove(c101, c103));
     }
 
-    @Test // 20
-	public void redLoosesByFlyingGeneralCheckmate(){
-		// red moves general forward one
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,5),
-				TestCoordinate.makeCoordinate(2, 5)));
-		// black mirrors
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,5),
-				TestCoordinate.makeCoordinate(2, 5)));
-		// red moves general left
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(2,5),
-				TestCoordinate.makeCoordinate(2, 4)));
-		// black moves general back to origin
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(2,5),
-				TestCoordinate.makeCoordinate(1, 5)));
-		// red moves middle soldier forward
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(4,5),
-				TestCoordinate.makeCoordinate(5, 5)));
-		// black mirrors
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(4,5),
-				TestCoordinate.makeCoordinate(5, 5)));
-		// red middle soldier crosses river and takes black soldier
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(5,5),
-				TestCoordinate.makeCoordinate(6, 5)));
-		// black moves left chariot forward one
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(1,1),
-				TestCoordinate.makeCoordinate(2, 1)));
-		// red moves middle soldier to the right one
-		assertEquals(MoveResult.OK, game.makeMove(TestCoordinate.makeCoordinate(6,5),
-				TestCoordinate.makeCoordinate(6, 6)));
-		// black checkmates red, moving left chariot to red general's file
-		assertEquals(MoveResult.BLACK_WINS, game.makeMove(TestCoordinate.makeCoordinate(2,1),
-				TestCoordinate.makeCoordinate(2,6)));
+    @Test
+	public void validateGeneralCanDefendChackmate(){
+		assertEquals(MoveResult.OK, game.makeMove(c15,
+				c25));
+		assertEquals(MoveResult.OK, game.makeMove(c15,
+				c25));
+		assertEquals(MoveResult.OK, game.makeMove(c25,
+				c24));
+		assertEquals(MoveResult.OK, game.makeMove(c25,
+				c15));
+		assertEquals(MoveResult.OK, game.makeMove(c45,
+				c55));
+		assertEquals(MoveResult.OK, game.makeMove(c45,
+				c55));
+		assertEquals(MoveResult.OK, game.makeMove(c55,
+				c65));
+		assertEquals(MoveResult.OK, game.makeMove(c11,
+				c21));
+		assertEquals(MoveResult.OK, game.makeMove(c65,
+				c66));
+		assertEquals(MoveResult.BLACK_WINS, game.makeMove(c21,
+				c26));
 	}
 
 
