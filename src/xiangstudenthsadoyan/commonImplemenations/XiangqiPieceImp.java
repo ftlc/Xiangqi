@@ -14,10 +14,22 @@ public class XiangqiPieceImp implements XiangqiPiece {
         this.pieceType = pieceType;
         this.color = color;
     }
+
+    /**
+     * Creation method
+     * @param pieceType
+     * @param color
+     * @return XiangqiPieceImp
+     */
     public static XiangqiPieceImp makePiece(XiangqiPieceType pieceType, XiangqiColor color){
         return new XiangqiPieceImp(pieceType, color);
     }
 
+    /**
+     * Copy constructor the returns a XiangqiPieceImp
+     * @param toCopy XiangqiPiece to copy
+     * @return new XiangqiPieceImp
+     */
     public static XiangqiPieceImp copyConstructor(XiangqiPiece toCopy){
         return new XiangqiPieceImp(toCopy.getPieceType(), toCopy.getColor());
     }

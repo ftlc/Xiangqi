@@ -13,9 +13,21 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
         this.file = file;
     }
 
+    /**
+     * Copy constructor. Takes in an XiangqiCoordinate and returns a XiangqiCoordinateImp
+     * @param toCopy the input coordinate
+     * @return output coordinate
+     */
     public static XiangqiCoordinateImp copyConstructor(XiangqiCoordinate toCopy) {
         return new XiangqiCoordinateImp(toCopy.getRank(), toCopy.getFile());
     }
+
+    /**
+     * Creation method.
+     * @param rank
+     * @param file
+     * @return new XiangqiCoordinateImp
+     */
     public static XiangqiCoordinateImp makeCoordinate(int rank, int file){
         return new XiangqiCoordinateImp(rank, file);
     }
@@ -29,21 +41,51 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
         return file;
     }
 
+
+    /**
+     * Returns distance to another point
+     * @param c2 other point
+     * @return distance as an int
+     */
     public int distanceTo(XiangqiCoordinate c2){
         return (Math.abs(getRank() - c2.getRank())) + Math.abs(getFile() - c2.getFile());
     }
+
+    /**
+     * Returns whether the other point is orthogonal to this one
+     * @param c2 other point
+     * @return boolean
+     */
     public boolean isOrthogonal(XiangqiCoordinate c2){
         return (getRank() == c2.getRank() || getFile() == c2.getFile());
     }
+
+    /**
+     * Returns whether the other point is diagonallyAdjacent to this one
+     * @param c2 other point
+     * @return boolean
+     */
     public boolean isDiagonallyAdjacent(XiangqiCoordinate c2){
         return isDiagonal(c2) && (distanceTo(c2) == 2);
     }
 
+
+    /**
+     * Returns whether the other point is diagonal to this one
+     * @param c2 other point
+     * @return boolean
+     */
     public boolean isDiagonal(XiangqiCoordinate c2){
         return (Math.abs(getRank() - c2.getRank()) == Math.abs(getFile() - c2.getFile()));
 
     }
 
+    /**
+     * Returns whether given loc is between current point and dest
+     * @param loc point to test
+     * @param dest destination to test against
+     * @return boolean
+     */
     public boolean isLocationBetween(XiangqiCoordinateImp loc, XiangqiCoordinateImp dest) {
 
 
@@ -83,6 +125,12 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
     }
 
 
+    /**
+     * Returns whether the other point is not backward to this one
+     * @param aspect to test against
+     * @param c2 other point
+     * @return boolean
+     */
     public boolean isNotBackWard(XiangqiCoordinateImp c2, XiangqiColor aspect){
         if(aspect == XiangqiColor.RED){
             return c2.getRank() >= getRank();
@@ -91,6 +139,13 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
         }
     }
 
+
+    /**
+     * Returns whether the other point is in front of this one
+     * @param aspect to test against
+     * @param c2 other point
+     * @return boolean
+     */
     public boolean isForward(XiangqiCoordinateImp c2, XiangqiColor aspect){
         if(aspect == XiangqiColor.RED) {
             return isNotBackWard(c2, aspect) && c2.getFile() == getFile();

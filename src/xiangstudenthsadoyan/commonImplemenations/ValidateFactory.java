@@ -27,6 +27,11 @@ public class ValidateFactory {
   //  private static Predicate<State> BetaInPalaceValidator = (State s) -> (c.getRank() == 1 || c.getRank() == 5) && c.getFile() >= 2 && c.getFile() <= 4;
 
 
+    /**
+     * Static method for making validators for BETA
+     * @param piece to test validators on
+     * @return List of Predicates
+     */
     public static List<Predicate<State>> makeBetaValidators(XiangqiPieceImp piece){
 
 
@@ -40,6 +45,11 @@ public class ValidateFactory {
         return validators;
     }
 
+    /**
+     * Add validators that are common across versions
+     * @param piece
+     * @return List of Predicate
+     */
     private static List<Predicate<State>> addCommonValidators(XiangqiPieceImp piece){
 
         List<Predicate<State>> validators = new LinkedList<Predicate<State>>();
@@ -76,6 +86,12 @@ public class ValidateFactory {
         return validators;
     }
 
+    /**
+     * Static method for validators for GAMMA
+     * @param piece
+     * @param s
+     * @return List of Predicate
+     */
     public static List<Predicate<State>> makeGammaValidators(XiangqiPieceImp piece, State s){
 
         List<Predicate<State>> validators = addCommonValidators(piece);
