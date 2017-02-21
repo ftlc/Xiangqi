@@ -267,8 +267,7 @@ public class GammaXiangqiGame implements XiangqiGame {
         XiangqiCoordinateImp temp = XiangqiCoordinateImp.copyConstructor(where);
 
         if(!board.isInBounds(temp)){
-            Throwable ex = new Throwable();
-            throw new CompletionException(ex);
+            throw new CompletionException(new Throwable());
         }
         if(aspect == XiangqiColor.BLACK) {
             temp = convertCoordinate(temp);
