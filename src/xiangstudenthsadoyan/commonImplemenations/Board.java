@@ -188,9 +188,9 @@ public class Board {
     public boolean isAcrossTheRiver(XiangqiCoordinateImp c, XiangqiColor aspect){
 
         if(aspect == XiangqiColor.RED){
-           if(c.getRank() > 5){
-               return true;
-           }
+            if(c.getRank() > 5){
+                return true;
+            }
         }
         if(aspect == XiangqiColor.BLACK){
             if(c.getRank() <=5){

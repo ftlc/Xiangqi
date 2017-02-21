@@ -24,7 +24,7 @@ public class ValidateFactory {
     private static Predicate<State> distanceIsFour = (State s) -> s.getSource().distanceTo(s.getDestination()) == 4;
     private static Predicate<State> cantCrossRiver = (State s) -> s.notCrossingTheRiver();
     private static Predicate<State> isNotBackward = (State s) -> s.isNotBackward();
-  //  private static Predicate<State> BetaInPalaceValidator = (State s) -> (c.getRank() == 1 || c.getRank() == 5) && c.getFile() >= 2 && c.getFile() <= 4;
+    //  private static Predicate<State> BetaInPalaceValidator = (State s) -> (c.getRank() == 1 || c.getRank() == 5) && c.getFile() >= 2 && c.getFile() <= 4;
 
 
     /**

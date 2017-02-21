@@ -4,7 +4,6 @@ import org.junit.Before;
 import org.junit.Test;
 import xiangqi.XiangqiGameFactory;
 import xiangqi.common.*;
-import xiangstudenthsadoyan.commonImplemenations.XiangqiCoordinateImp;
 
 import java.util.concurrent.CompletionException;
 
@@ -399,13 +398,13 @@ public class GammaXiangqiTestCases {
 
     @Test
     public void validateFlyingGeneralsMove(){
-		assertEquals(MoveResult.OK, game.makeMove(c15,
-				c25));
-		assertEquals(MoveResult.OK, game.makeMove(c15,
-				c25));
-		assertEquals(MoveResult.OK, game.makeMove(c25,
-				c24));
-		assertEquals(MoveResult.ILLEGAL, game.makeMove(c25, c26));
+        assertEquals(MoveResult.OK, game.makeMove(c15,
+                c25));
+        assertEquals(MoveResult.OK, game.makeMove(c15,
+                c25));
+        assertEquals(MoveResult.OK, game.makeMove(c25,
+                c24));
+        assertEquals(MoveResult.ILLEGAL, game.makeMove(c25, c26));
     }
 
     @Test
@@ -430,33 +429,32 @@ public class GammaXiangqiTestCases {
     }
 
     @Test
-	public void validateGeneralCanPreventEscapeCheckmate(){
-		assertEquals(MoveResult.OK, game.makeMove(c15,
-				c25));
-		assertEquals(MoveResult.OK, game.makeMove(c15,
-				c25));
-		assertEquals(MoveResult.OK, game.makeMove(c25,
-				c24));
-		assertEquals(MoveResult.OK, game.makeMove(c25,
-				c15));
-		assertEquals(MoveResult.OK, game.makeMove(c45,
-				c55));
-		assertEquals(MoveResult.OK, game.makeMove(c45,
-				c55));
-		assertEquals(MoveResult.OK, game.makeMove(c55,
-				c65));
-		assertEquals(MoveResult.OK, game.makeMove(c11,
-				c21));
-		assertEquals(MoveResult.OK, game.makeMove(c65,
-				c66));
-		assertEquals(MoveResult.BLACK_WINS, game.makeMove(c21,
-				c26));
-	}
-
-	@Test (expected = CompletionException.class)
-    public void validateGetPieceAtThrowsException(){
-	    game.getPieceAt(c10, RED);
+    public void validateGeneralCanPreventEscapeCheckmate(){
+        assertEquals(MoveResult.OK, game.makeMove(c15,
+                c25));
+        assertEquals(MoveResult.OK, game.makeMove(c15,
+                c25));
+        assertEquals(MoveResult.OK, game.makeMove(c25,
+                c24));
+        assertEquals(MoveResult.OK, game.makeMove(c25,
+                c15));
+        assertEquals(MoveResult.OK, game.makeMove(c45,
+                c55));
+        assertEquals(MoveResult.OK, game.makeMove(c45,
+                c55));
+        assertEquals(MoveResult.OK, game.makeMove(c55,
+                c65));
+        assertEquals(MoveResult.OK, game.makeMove(c11,
+                c21));
+        assertEquals(MoveResult.OK, game.makeMove(c65,
+                c66));
+        assertEquals(MoveResult.BLACK_WINS, game.makeMove(c21,
+                c26));
     }
 
+    @Test (expected = CompletionException.class)
+    public void validateGetPieceAtThrowsException(){
+        game.getPieceAt(c10, RED);
+    }
 
 }

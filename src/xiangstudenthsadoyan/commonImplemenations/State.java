@@ -34,10 +34,10 @@ public class State {
 
 
     public State(Board board, XiangqiCoordinateImp source, XiangqiCoordinateImp dest, XiangqiColor aspect){
-       this.board = board;
-       this.source = source;
-       this.destination = dest;
-       this.aspect = aspect;
+        this.board = board;
+        this.source = source;
+        this.destination = dest;
+        this.aspect = aspect;
     }
 
     public void setSource(XiangqiCoordinateImp source) {
@@ -232,7 +232,7 @@ public class State {
      * @return boolean
      */
     public boolean isForward(){
-        if(!(source.isForward(destination, aspect))){
+        if(!(source.isForward(destination, getBoard().getPieceAt(source).getColor()))){
             setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
             return false;
         }

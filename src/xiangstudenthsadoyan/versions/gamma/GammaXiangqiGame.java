@@ -60,17 +60,7 @@ public class GammaXiangqiGame implements XiangqiGame {
         //Create Official State
         moveState = new State(board, newSource, newDest, currentTurn);
 
-        //The Meat
-        if(runValidators(moveState)) {
-
-            //Make Ghost State to validate General Not Under attack
-            State ghostState = makeGhostMove(moveState);
-
-            //Validate general not under attack
-            if(isGeneralUnderAttack(ghostState, currentTurn)){
-                setMoveMessage("Can't Place General In Check");
-                return MoveResult.ILLEGAL;
-            }
+        if(runAndTestGeneral(moveState)){
 
 
             //Update the board
@@ -137,6 +127,29 @@ public class GammaXiangqiGame implements XiangqiGame {
     }
 
     /**
+     * Run validators and make a ghost move to test the general is not exposed to check
+     * @param state to test on
+     * @return boolean
+     */
+    public boolean runAndTestGeneral(State state){
+        if(runValidators(state)){
+
+            //Make Ghost State to validate General Not Under attack
+            State ghostState = makeGhostMove(state);
+
+            //Validate general not under attack
+            if(isGeneralUnderAttack(ghostState, ghostState.getAspect())){
+                setMoveMessage("Can't Place General In Check");
+                return false;
+            }
+
+            return true;
+        }
+
+        return false;
+
+    }
+    /**
      * Takes a state and returns whether there are any legal moves
      * @param state
      * @return boolean indicating valid moves or not
@@ -150,20 +163,21 @@ public class GammaXiangqiGame implements XiangqiGame {
         XiangqiColor color = tempState.getBoard().getPieceAt(kinglocation).getColor();
 
 
+        //The Coordinates of all the pieces of this color
         HashSet<XiangqiCoordinateImp> coords = tempState.getTheLocationsOfAllPiecesOfColor(color);
         for(XiangqiCoordinateImp c : coords) {
             tempState.setSource(c);
             tempState.setAspect(color);
 
+            //All the valid locations on the board.
             HashSet<XiangqiCoordinateImp> locations = state.getBoard().getAllBoardLocations();
+
 
             for(XiangqiCoordinateImp l: locations){
                 tempState.setDestination(l);
-                if (runValidators(tempState)) {
-                    State ghostState = makeGhostMove(tempState);
-                    if (!isGeneralUnderAttack(ghostState, color)) {
-                        return true;
-                    }
+                //See if piece can make that move
+                if(runAndTestGeneral(tempState)){
+                    return true;
                 }
 
             }
@@ -173,6 +187,11 @@ public class GammaXiangqiGame implements XiangqiGame {
     }
 
 
+    /**
+     * Runs all of the Predicate validators to determine if move from source to dest is legal
+     * @param state to test
+     * @return boolean
+     */
     public boolean runValidators(State state) {
 
         XiangqiPieceImp piece = XiangqiPieceImp.copyConstructor(board.getPieceAt(state.getSource()));
@@ -212,6 +231,7 @@ public class GammaXiangqiGame implements XiangqiGame {
 
         //Get locations of all attacking pieces
         HashSet<XiangqiCoordinateImp> coords = tempState.getTheLocationsOfAllPiecesOfColor(getOppositeColor(tempState.getBoard().getPieceAt(location).getColor()));
+        tempState.setAspect(getOppositeColor(tempState.getAspect()));
         for(XiangqiCoordinateImp c : coords){
             //Set stateSource as the piece location
             tempState.setSource(c);
