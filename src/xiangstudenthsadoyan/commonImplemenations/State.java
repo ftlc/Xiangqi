@@ -265,10 +265,8 @@ public class State {
         }
         if(noPiecesInBetween(redKing, blackKing)){
             return true;
-        } else {
-            return false;
         }
-
+        return false;
     }
 
 

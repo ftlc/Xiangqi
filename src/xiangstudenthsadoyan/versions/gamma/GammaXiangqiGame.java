@@ -11,8 +11,11 @@ import java.util.function.Predicate;
 /**
  * Created by gnomeftlc on 2/18/17.
  */
+
+
 public class GammaXiangqiGame implements XiangqiGame {
 
+    public static final int MOVELIMIT = 50;
     //Variables
     private Board board;
     private String moveMessage;
@@ -38,56 +41,51 @@ public class GammaXiangqiGame implements XiangqiGame {
 
     @Override
     public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
-
         // Copy Constructors
         XiangqiCoordinateImp newSource = XiangqiCoordinateImp.copyConstructor(source);
         XiangqiCoordinateImp newDest = XiangqiCoordinateImp.copyConstructor(destination);
-
 
         // Standardize Coordinates
         if(currentTurn == XiangqiColor.BLACK){
             newSource = convertCoordinate(newSource);
             newDest = convertCoordinate(newDest);
         }
-
         //Check Piece correct color
         if(board.getPieceAt(newSource).getColor() == getOppositeColor(currentTurn)){
             setMoveMessage("Piece Wrong Color");
             return MoveResult.ILLEGAL;
         }
-
-
         //Create Official State
         moveState = new State(board, newSource, newDest, currentTurn);
-
-        if(runAndTestGeneral(moveState)){
-
-
-            //Update the board
-            moveState.movePiece(newSource, newDest);
-            moveNumber++;
-
-
-            //Check for checkmate
-            if(checkmate(moveState) || stalemate(moveState)) {
-                if (currentTurn == XiangqiColor.RED) {
-                    return MoveResult.RED_WINS;
-                } else {
-                    return MoveResult.BLACK_WINS;
-                }
-            }
-
-            //Check for draw
-            if(moveNumber > 50){
-                return MoveResult.DRAW;
-            }
-
-
-            //Update current turn
-            switchCurrentTurn();
-            return MoveResult.OK;
-        } else {
+        if(!runAndTestGeneral(moveState)) {
             return MoveResult.ILLEGAL;
+        }
+        //Update the board
+        moveState.movePiece(newSource, newDest);
+        moveNumber++;
+        //Check for endgame
+        if(stalemate(moveState)) {
+            return convertColorToMoveWin(currentTurn);
+        }
+        //Check for draw
+        if(moveNumber > MOVELIMIT){
+            return MoveResult.DRAW;
+        }
+        //Update current turn
+        switchCurrentTurn();
+        return MoveResult.OK;
+    }
+
+    /**
+     * Converts the color to a move win
+     * @param color to convert
+     * @return the relevant move result
+     */
+    private MoveResult convertColorToMoveWin(XiangqiColor color){
+        if (color == XiangqiColor.RED) {
+            return MoveResult.RED_WINS;
+        } else {
+            return MoveResult.BLACK_WINS;
         }
     }
 
@@ -112,19 +110,6 @@ public class GammaXiangqiGame implements XiangqiGame {
         return ghostState;
     }
 
-    /**
-     * Return if it's a checkmate state
-     * @param state to check
-     * @return boolean indicating checkmate or not
-     */
-    public boolean checkmate(State state){
-        if(isGeneralUnderAttack(state, getOppositeColor(state.getAspect()))){
-            return !anyValidMoves(state);
-        } else {
-            return false;
-        }
-
-    }
 
     /**
      * Run validators and make a ghost move to test the general is not exposed to check
@@ -159,9 +144,9 @@ public class GammaXiangqiGame implements XiangqiGame {
         //The king opposite of the state's turn
         XiangqiCoordinateImp kinglocation = state.getKingsLocation(getOppositeColor(state.getAspect()));
         State tempState = State.copyConstructor(state);
+
         //Color of the king
         XiangqiColor color = tempState.getBoard().getPieceAt(kinglocation).getColor();
-
 
         //The Coordinates of all the pieces of this color
         HashSet<XiangqiCoordinateImp> coords = tempState.getTheLocationsOfAllPiecesOfColor(color);
@@ -171,18 +156,14 @@ public class GammaXiangqiGame implements XiangqiGame {
 
             //All the valid locations on the board.
             HashSet<XiangqiCoordinateImp> locations = state.getBoard().getAllBoardLocations();
-
-
             for(XiangqiCoordinateImp l: locations){
                 tempState.setDestination(l);
                 //See if piece can make that move
                 if(runAndTestGeneral(tempState)){
                     return true;
                 }
-
             }
         }
-
         return false;
     }
 
@@ -203,7 +184,6 @@ public class GammaXiangqiGame implements XiangqiGame {
                 return false;
             }
         }
-
         return true;
     }
 
@@ -252,7 +232,6 @@ public class GammaXiangqiGame implements XiangqiGame {
             return XiangqiColor.BLACK;
         } else {
             return XiangqiColor.RED;
-
         }
     }
 

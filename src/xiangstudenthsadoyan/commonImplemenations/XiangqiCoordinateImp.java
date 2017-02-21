@@ -114,7 +114,6 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
             }
 
             i++;
-
             if(i > deltaX && i > deltaY){
                 return true;
             }
