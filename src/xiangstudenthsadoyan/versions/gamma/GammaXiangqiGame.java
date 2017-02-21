@@ -5,6 +5,7 @@ import xiangstudenthsadoyan.commonImplemenations.*;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.concurrent.CompletionException;
 import java.util.function.Predicate;
 
 /**
@@ -12,6 +13,7 @@ import java.util.function.Predicate;
  */
 public class GammaXiangqiGame implements XiangqiGame {
 
+    //Variables
     private Board board;
     private String moveMessage;
     private XiangqiColor currentTurn;
@@ -24,6 +26,7 @@ public class GammaXiangqiGame implements XiangqiGame {
         currentTurn = XiangqiColor.RED;
     }
 
+
     private boolean isValid(){
         return valid;
     }
@@ -33,47 +36,64 @@ public class GammaXiangqiGame implements XiangqiGame {
 
 
 
-
     @Override
     public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
 
+        // Copy Constructors
         XiangqiCoordinateImp newSource = XiangqiCoordinateImp.copyConstructor(source);
         XiangqiCoordinateImp newDest = XiangqiCoordinateImp.copyConstructor(destination);
 
 
+        // Standardize Coordinates
         if(currentTurn == XiangqiColor.BLACK){
             newSource = convertCoordinate(newSource);
             newDest = convertCoordinate(newDest);
         }
+
+        //Check Piece correct color
         if(board.getPieceAt(newSource).getColor() == getOppositeColor(currentTurn)){
             setMoveMessage("Piece Wrong Color");
             return MoveResult.ILLEGAL;
         }
 
 
+        //Create Official State
         moveState = new State(board, newSource, newDest, currentTurn);
+
+        //The Meat
         if(runValidators(moveState)) {
 
+            //Make Ghost State to validate General Not Under attack
             State ghostState = makeGhostMove(moveState);
 
+            //Validate general not under attack
             if(isGeneralUnderAttack(ghostState, currentTurn)){
                 setMoveMessage("Can't Place General In Check");
                 return MoveResult.ILLEGAL;
             }
 
 
+            //Update the board
             moveState.movePiece(newSource, newDest);
             moveNumber++;
-            if(checkmate(moveState)) {
+
+
+            //Check for checkmate
+            if(checkmate(moveState) || stalemate(moveState)) {
                 if (currentTurn == XiangqiColor.RED) {
                     return MoveResult.RED_WINS;
                 } else {
                     return MoveResult.BLACK_WINS;
                 }
             }
+
+            //Check for draw
             if(moveNumber > 50){
                 return MoveResult.DRAW;
             }
+
+
+            //Update current turn
             switchCurrentTurn();
             return MoveResult.OK;
         } else {
@@ -81,6 +101,20 @@ public class GammaXiangqiGame implements XiangqiGame {
         }
     }
 
+    /**
+     * Returns true if the opposite side has no valid moves
+     * @param theState to check
+     * @return boolean
+     */
+    public boolean stalemate(State theState){
+        return !anyValidMoves(theState);
+    }
+
+    /**
+     * Makes ghost move
+     * @param state the state to copy
+     * @return ghostState with the ghost move
+     */
     public State makeGhostMove(State state){
         State ghostState = State.copyConstructor(state);
         ghostState.movePiece(state.getSource(), state.getDestination());
@@ -88,21 +122,31 @@ public class GammaXiangqiGame implements XiangqiGame {
         return ghostState;
     }
 
+    /**
+     * Return if it's a checkmate state
+     * @param state to check
+     * @return boolean indicating checkmate or not
+     */
     public boolean checkmate(State state){
-        XiangqiCoordinateImp kinglocation = state.getKingsLocation(getOppositeColor(currentTurn));
-
-
-        if(isGeneralUnderAttack(state, getOppositeColor(currentTurn))){
-                //isLocationUnderAttack(state, kinglocation)){
-            return !anyValidMoves(state, kinglocation);
+        if(isGeneralUnderAttack(state, getOppositeColor(state.getAspect()))){
+            return !anyValidMoves(state);
         } else {
             return false;
         }
 
     }
 
-    public boolean anyValidMoves(State state, XiangqiCoordinateImp kinglocation){
+    /**
+     * Takes a state and returns whether there are any legal moves
+     * @param state
+     * @return boolean indicating valid moves or not
+     */
+    public boolean anyValidMoves(State state){
+
+        //The king opposite of the state's turn
+        XiangqiCoordinateImp kinglocation = state.getKingsLocation(getOppositeColor(state.getAspect()));
         State tempState = State.copyConstructor(state);
+        //Color of the king
         XiangqiColor color = tempState.getBoard().getPieceAt(kinglocation).getColor();
 
 
@@ -110,19 +154,18 @@ public class GammaXiangqiGame implements XiangqiGame {
         for(XiangqiCoordinateImp c : coords) {
             tempState.setSource(c);
             tempState.setAspect(color);
-            int numRanks = state.getBoard().getNumRanks();
-            int numFiles = state.getBoard().getNumFiles();
-            for (int i = 1; i <= numRanks; i++) {
-                for (int j = 1; j <= numFiles; j++) {
-                    XiangqiCoordinateImp DTemp  = XiangqiCoordinateImp.makeCoordinate(j, i);
-                    tempState.setDestination(DTemp);
-                    if (runValidators(tempState)) {
-                        State ghostState = makeGhostMove(tempState);
-                        if (!isGeneralUnderAttack(ghostState, color)) {
-                            return true;
-                        }
+
+            HashSet<XiangqiCoordinateImp> locations = state.getBoard().getAllBoardLocations();
+
+            for(XiangqiCoordinateImp l: locations){
+                tempState.setDestination(l);
+                if (runValidators(tempState)) {
+                    State ghostState = makeGhostMove(tempState);
+                    if (!isGeneralUnderAttack(ghostState, color)) {
+                        return true;
                     }
                 }
+
             }
         }
 
@@ -145,45 +188,64 @@ public class GammaXiangqiGame implements XiangqiGame {
         return true;
     }
 
+    /**
+     * Returns whether general of kingColor is under attack in given state
+     * @param ghostState to check
+     * @param kingColor the color of the general
+     * @return boolean
+     */
     public boolean isGeneralUnderAttack(State ghostState, XiangqiColor kingColor){
         XiangqiCoordinateImp kinglocation = ghostState.getKingsLocation(kingColor);
         return isLocationUnderAttack(ghostState, kinglocation) || ghostState.canGeneralsSeeEachOther();
     }
 
+    /**
+     * Returns whether location is under attack in a given state
+     * @param theState the state to check
+     * @param location the location to check
+     * @return boolean
+     */
     private boolean isLocationUnderAttack(State theState, XiangqiCoordinateImp location){
+        //Deep Copy not to modify original state
         State tempState = State.copyConstructor(theState);
         tempState.setDestination(location);
-        if(tempState.getAspect() != XiangqiColor.NONE){
-            HashSet<XiangqiCoordinateImp> coords = tempState.getTheLocationsOfAllPiecesOfColor(getOppositeColor(tempState.getBoard().getPieceAt(location).getColor()));
-            for(XiangqiCoordinateImp c : coords){
-                tempState.setSource(c);
-                if(runValidators(tempState)){
-                    return true;
-                }
-            }
 
+        //Get locations of all attacking pieces
+        HashSet<XiangqiCoordinateImp> coords = tempState.getTheLocationsOfAllPiecesOfColor(getOppositeColor(tempState.getBoard().getPieceAt(location).getColor()));
+        for(XiangqiCoordinateImp c : coords){
+            //Set stateSource as the piece location
+            tempState.setSource(c);
+            if(runValidators(tempState)){
+                return true;
+            }
         }
         return false;
     }
 
+    /**
+     * Takes a color and returns the opposite color
+     * @param color to take
+     * @return opposite color
+     */
     private XiangqiColor getOppositeColor(XiangqiColor color){
         if(color == XiangqiColor.RED) {
             return XiangqiColor.BLACK;
         } else {
-                return XiangqiColor.RED;
+            return XiangqiColor.RED;
 
         }
     }
+
 
     private void switchCurrentTurn(){
-        if(currentTurn == XiangqiColor.RED){
-            currentTurn = XiangqiColor.BLACK;
-        } else {
-            currentTurn = XiangqiColor.RED;
-        }
+        currentTurn = getOppositeColor(currentTurn);
     }
 
 
+    /**
+     * Sets move message. Also sets valid to be false
+     * @param moveMessage new message to set
+     */
     private void setMoveMessage(String moveMessage) {
         setValid(false);
         this.moveMessage = moveMessage;
@@ -202,6 +264,10 @@ public class GammaXiangqiGame implements XiangqiGame {
     public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
         XiangqiCoordinateImp temp = XiangqiCoordinateImp.copyConstructor(where);
 
+        if(!board.isInBounds(temp)){
+            Throwable ex = new Throwable();
+            throw new CompletionException(ex);
+        }
         if(aspect == XiangqiColor.BLACK) {
             temp = convertCoordinate(temp);
         }
@@ -209,8 +275,11 @@ public class GammaXiangqiGame implements XiangqiGame {
     }
 
 
-
-
+    /**
+     * Standard converted from Red to Black or vice versa
+     * @param original coord
+     * @return converted coord
+     */
     public XiangqiCoordinateImp convertCoordinate(XiangqiCoordinateImp original){
         int rank = board.getNumRanks() - original.getRank() + 1;
         int file = board.getNumFiles() - original.getFile() + 1;

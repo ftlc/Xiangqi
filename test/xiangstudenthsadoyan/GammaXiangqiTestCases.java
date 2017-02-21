@@ -6,6 +6,8 @@ import xiangqi.XiangqiGameFactory;
 import xiangqi.common.*;
 import xiangstudenthsadoyan.commonImplemenations.XiangqiCoordinateImp;
 
+import java.util.concurrent.CompletionException;
+
 import static junit.framework.TestCase.assertEquals;
 import static xiangqi.common.XiangqiColor.*;
 import static xiangqi.common.XiangqiPieceType.*;
@@ -451,6 +453,10 @@ public class GammaXiangqiTestCases {
 				c26));
 	}
 
+	@Test (expected = CompletionException.class)
+    public void validateGetPieceAtThrowsException(){
+	    game.getPieceAt(c10, RED);
+    }
 
 
 }
