@@ -257,6 +257,9 @@ public class GammaXiangqiGame implements XiangqiGame {
     }
 
 
+    /**
+     * Switch current turn
+     */
     private void switchCurrentTurn(){
         currentTurn = getOppositeColor(currentTurn);
     }
