@@ -1,35 +1,25 @@
-package xiangstudenthsadoyan.versions.gamma;
+package xiangstudenthsadoyan.versions.delta;
 
 import xiangqi.common.*;
 import xiangstudenthsadoyan.commonImplemenations.*;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.concurrent.CompletionException;
-import java.util.function.Predicate;
 
 /**
  * Created by gnomeftlc on 2/18/17.
  */
-
-
-public class GammaXiangqiGame implements XiangqiGame {
-
-    public static final int MOVELIMIT = 50;
-
+public class DeltaXiangqiGame implements XiangqiGame {
     //Variables
     private Board board;
     private XiangqiColor currentTurn;
-    private int moveNumber = 1;
     private State moveState;
     private GameLogic gameLogic;
 
-    public GammaXiangqiGame(){
-        board = Board.makeBoard(XiangqiGameVersion.GAMMA_XQ);
+    public DeltaXiangqiGame(){
+        board = Board.makeBoard(XiangqiGameVersion.DELTA_XQ);
         currentTurn = XiangqiColor.RED;
-        gameLogic = new GameLogic(XiangqiGameVersion.GAMMA_XQ);
+        gameLogic = new GameLogic(XiangqiGameVersion.DELTA_XQ);
     }
-
 
     @Override
     public MoveResult makeMove(XiangqiCoordinate source, XiangqiCoordinate destination) {
@@ -54,20 +44,14 @@ public class GammaXiangqiGame implements XiangqiGame {
         }
         //Update the board
         moveState.movePiece(newSource, newDest);
-        moveNumber++;
         //Check for endgame
         if(gameOver(moveState)) {
             return gameLogic.convertColorToMoveWin(currentTurn);
-        }
-        //Check for draw
-        if(moveNumber > MOVELIMIT){
-            return MoveResult.DRAW;
         }
         //Update current turn
         switchCurrentTurn();
         return MoveResult.OK;
     }
-
 
     /**
      * Returns true if the opposite side has no valid moves
@@ -78,16 +62,12 @@ public class GammaXiangqiGame implements XiangqiGame {
         return !gameLogic.anyValidMoves(theState);
     }
 
-
-
-
     /**
      * Switch current turn
      */
     private void switchCurrentTurn(){
         currentTurn = gameLogic.getOppositeColor(currentTurn);
     }
-
 
     @Override
     public String getMoveMessage() {
@@ -106,6 +86,5 @@ public class GammaXiangqiGame implements XiangqiGame {
         }
         return board.getPieceAt(temp);
     }
-
-
 }
+

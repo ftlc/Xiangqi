@@ -1,5 +1,6 @@
 package xiangstudenthsadoyan;
 
+
 import org.junit.Before;
 import org.junit.Test;
 import xiangqi.XiangqiGameFactory;
@@ -11,12 +12,10 @@ import static junit.framework.TestCase.assertEquals;
 import static xiangqi.common.XiangqiColor.*;
 import static xiangqi.common.XiangqiPieceType.*;
 import static xiangstudenthsadoyan.TestPiece.makePiece;
-
 /**
- * Created by gnomeftlc on 2/18/17.
+ * Created by gnomeftlc on 3/2/17.
  */
-public class GammaXiangqiTestCases {
-
+public class DeltaXiangqiTestCases {
     private static XiangqiCoordinate
             c10 = TestCoordinate.makeCoordinate(1, 0),
             c11 = TestCoordinate.makeCoordinate(1, 1),
@@ -147,7 +146,7 @@ public class GammaXiangqiTestCases {
 
     @Before
     public void setup(){
-        game = XiangqiGameFactory.makeXiangqiGame(XiangqiGameVersion.GAMMA_XQ);
+        game = XiangqiGameFactory.makeXiangqiGame(XiangqiGameVersion.DELTA_XQ);
     }
 
 
@@ -308,19 +307,6 @@ public class GammaXiangqiTestCases {
         assertEquals(MoveResult.OK, game.makeMove(c31, c33));
     }
 
-    @Test
-    public void validateDrawAfterTwentyFiveTurns(){
-
-        for(int i = 0; i < 12; i++) {
-            game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
-            game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1));
-            game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1));
-            game.makeMove(TestCoordinate.makeCoordinate(3, 1), TestCoordinate.makeCoordinate(1, 1));
-        }
-
-        assertEquals(MoveResult.OK,game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
-        assertEquals(MoveResult.DRAW,game.makeMove(TestCoordinate.makeCoordinate(1, 1), TestCoordinate.makeCoordinate(3, 1)));
-    }
 
     @Test
     public void validateCapture(){

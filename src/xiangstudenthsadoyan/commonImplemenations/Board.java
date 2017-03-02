@@ -63,40 +63,48 @@ public class Board {
                 break;
 
             case GAMMA_XQ:
-                numRanks = 10;
-                numFiles = 9;
-                board = new HashMap<>();
-
-
-                //Initialize Red pieces
-                board.put(XiangqiCoordinateImp.makeCoordinate(1,5), XiangqiPieceImp.makePiece(XiangqiPieceType.GENERAL, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(1,1), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(1,3), XiangqiPieceImp.makePiece(XiangqiPieceType.ELEPHANT, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(1,4), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(1,6), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(1,7), XiangqiPieceImp.makePiece(XiangqiPieceType.ELEPHANT, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(1,9), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(4,1), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(4,3), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(4,5), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(4,7), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
-                board.put(XiangqiCoordinateImp.makeCoordinate(4,9), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
-
-                //Initialize Black pieces
-                board.put(XiangqiCoordinateImp.makeCoordinate(10,5), XiangqiPieceImp.makePiece(XiangqiPieceType.GENERAL, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(10,1), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(10,3), XiangqiPieceImp.makePiece(XiangqiPieceType.ELEPHANT, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(10,4), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(10,6), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(10,7), XiangqiPieceImp.makePiece(XiangqiPieceType.ELEPHANT, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(10,9), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(7,1), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(7,3), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(7,5), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(7,7), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
-                board.put(XiangqiCoordinateImp.makeCoordinate(7,9), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
+                initFullBoard();
+                break;
+            case DELTA_XQ:
+                initFullBoard();
                 break;
         }
+    }
+
+    private void initFullBoard(){
+
+        numRanks = 10;
+        numFiles = 9;
+        board = new HashMap<>();
+
+
+        //Initialize Red pieces
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,5), XiangqiPieceImp.makePiece(XiangqiPieceType.GENERAL, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,1), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,3), XiangqiPieceImp.makePiece(XiangqiPieceType.ELEPHANT, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,4), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,6), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,7), XiangqiPieceImp.makePiece(XiangqiPieceType.ELEPHANT, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,9), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(4,1), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(4,3), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(4,5), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(4,7), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(4,9), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.RED));
+
+        //Initialize Black pieces
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,5), XiangqiPieceImp.makePiece(XiangqiPieceType.GENERAL, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,1), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,3), XiangqiPieceImp.makePiece(XiangqiPieceType.ELEPHANT, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,4), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,6), XiangqiPieceImp.makePiece(XiangqiPieceType.ADVISOR, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,7), XiangqiPieceImp.makePiece(XiangqiPieceType.ELEPHANT, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,9), XiangqiPieceImp.makePiece(XiangqiPieceType.CHARIOT, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(7,1), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(7,3), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(7,5), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(7,7), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(7,9), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
     }
 
     /**
@@ -173,7 +181,6 @@ public class Board {
                 return c;
             }
         }
-
         //Should never be reached. Just here so java doesn't complain.
         return null;
     }
@@ -199,7 +206,6 @@ public class Board {
         }
         return false;
     }
-
 
     /**
      * Takes two locations and returns whether this move crosses the river
@@ -227,11 +233,8 @@ public class Board {
         if(version == XiangqiGameVersion.BETA_XQ) {
             return (c.getRank() == 1 || c.getRank() == 5) && c.getFile() >= 2 && c.getFile() <= 4;
         }
-        if(version == XiangqiGameVersion.GAMMA_XQ) {
-            return (c.getRank() >=8 || c.getRank() <= 3) && c.getFile() >= 4 && c.getFile() <= 6;
-        }
+        return (c.getRank() >=8 || c.getRank() <= 3) && c.getFile() >= 4 && c.getFile() <= 6;
 
-        return false;
     }
 
     public Set getAllOccupiedLocations(){

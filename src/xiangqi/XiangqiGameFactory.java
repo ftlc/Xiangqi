@@ -16,6 +16,7 @@ import xiangqi.common.*;
 import xiangstudenthsadoyan.AlphaXiangqiTestCases;
 import xiangstudenthsadoyan.versions.alphaxiangqi.AlphaXiangqiGame;
 import xiangstudenthsadoyan.versions.beta.BetaXiangqiGame;
+import xiangstudenthsadoyan.versions.delta.DeltaXiangqiGame;
 import xiangstudenthsadoyan.versions.gamma.GammaXiangqiGame;
 
 /**
@@ -38,6 +39,8 @@ public class XiangqiGameFactory
 				return new BetaXiangqiGame();
 			case GAMMA_XQ:
 				return new GammaXiangqiGame();
+			case DELTA_XQ:
+				return new DeltaXiangqiGame();
 			default:
 				return null;
 		}

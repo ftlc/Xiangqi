@@ -1,5 +1,8 @@
 package xiangstudenthsadoyan.commonImplemenations;
 
+import xiangqi.XiangqiGameFactory;
+import xiangqi.common.XiangqiGameVersion;
+
 import java.util.*;
 import java.util.function.Predicate;
 
@@ -27,6 +30,18 @@ public class ValidateFactory {
     //  private static Predicate<State> BetaInPalaceValidator = (State s) -> (c.getRank() == 1 || c.getRank() == 5) && c.getFile() >= 2 && c.getFile() <= 4;
 
 
+
+
+    public static List<Predicate<State>> makeValidators(XiangqiPieceImp piece, State state, XiangqiGameVersion version){
+        switch (version){
+            case GAMMA_XQ:
+                return makeGammaValidators(piece, state);
+            case DELTA_XQ:
+                return makeDeltaValidators(piece, state);
+            default:
+                return null;
+        }
+    }
     /**
      * Static method for making validators for BETA
      * @param piece to test validators on
@@ -117,4 +132,12 @@ public class ValidateFactory {
 
         return validators;
     }
+
+    public static List<Predicate<State>> makeDeltaValidators(XiangqiPieceImp piece, State s){
+
+        List<Predicate<State>> validators = makeGammaValidators(piece, s);
+
+        return validators;
+    }
+
 }
