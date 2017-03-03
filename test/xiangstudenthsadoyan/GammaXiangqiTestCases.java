@@ -456,4 +456,5 @@ public class GammaXiangqiTestCases {
         game.getPieceAt(c10, RED);
     }
 
+
 }

@@ -3,10 +3,7 @@ package xiangstudenthsadoyan.versions.gamma;
 import xiangqi.common.*;
 import xiangstudenthsadoyan.commonImplemenations.*;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.concurrent.CompletionException;
-import java.util.function.Predicate;
 
 /**
  * Created by gnomeftlc on 2/18/17.

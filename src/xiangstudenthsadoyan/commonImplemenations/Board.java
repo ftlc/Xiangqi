@@ -63,15 +63,17 @@ public class Board {
                 break;
 
             case GAMMA_XQ:
-                initFullBoard();
+                initGammaBoard();
                 break;
             case DELTA_XQ:
-                initFullBoard();
+                initGammaBoard();
+                addDeltaPieces();
+
                 break;
         }
     }
 
-    private void initFullBoard(){
+    private void initGammaBoard(){
 
         numRanks = 10;
         numFiles = 9;
@@ -107,6 +109,7 @@ public class Board {
         board.put(XiangqiCoordinateImp.makeCoordinate(7,9), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
     }
 
+    private void addDeltaPieces(){}
     /**
      * Move a piece from one location on the board to another
      * @param from
