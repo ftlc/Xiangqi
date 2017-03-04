@@ -68,7 +68,6 @@ public class Board {
             case DELTA_XQ:
                 initGammaBoard();
                 addDeltaPieces();
-
                 break;
         }
     }
@@ -109,7 +108,17 @@ public class Board {
         board.put(XiangqiCoordinateImp.makeCoordinate(7,9), XiangqiPieceImp.makePiece(XiangqiPieceType.SOLDIER, XiangqiColor.BLACK));
     }
 
-    private void addDeltaPieces(){}
+    private void addDeltaPieces(){
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,2), XiangqiPieceImp.makePiece(XiangqiPieceType.HORSE, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(1,8), XiangqiPieceImp.makePiece(XiangqiPieceType.HORSE, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(3,2), XiangqiPieceImp.makePiece(XiangqiPieceType.CANNON, XiangqiColor.RED));
+        board.put(XiangqiCoordinateImp.makeCoordinate(3,8), XiangqiPieceImp.makePiece(XiangqiPieceType.CANNON, XiangqiColor.RED));
+
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,2), XiangqiPieceImp.makePiece(XiangqiPieceType.HORSE, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(10,8), XiangqiPieceImp.makePiece(XiangqiPieceType.HORSE, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(8,2), XiangqiPieceImp.makePiece(XiangqiPieceType.CANNON, XiangqiColor.BLACK));
+        board.put(XiangqiCoordinateImp.makeCoordinate(8,8), XiangqiPieceImp.makePiece(XiangqiPieceType.CANNON, XiangqiColor.BLACK));
+    }
     /**
      * Move a piece from one location on the board to another
      * @param from
@@ -257,5 +266,10 @@ public class Board {
             }
         }
         return coords;
+    }
+
+    public boolean equals(Board other){
+        return board.equals(other.board);
+
     }
 }

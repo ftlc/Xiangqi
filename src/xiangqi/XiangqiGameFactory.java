@@ -13,7 +13,6 @@
 package xiangqi;
 
 import xiangqi.common.*;
-import xiangstudenthsadoyan.AlphaXiangqiTestCases;
 import xiangstudenthsadoyan.versions.alphaxiangqi.AlphaXiangqiGame;
 import xiangstudenthsadoyan.versions.beta.BetaXiangqiGame;
 import xiangstudenthsadoyan.versions.delta.DeltaXiangqiGame;

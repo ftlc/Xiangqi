@@ -172,7 +172,17 @@ public class State {
         return true;
     }
 
-
+    /**
+     * Return whether the destination is an L shape from the source
+     * @return boolean
+     */
+    public boolean isLShape(){
+        if(!source.isLShape(destination)){
+            setMoveMessage("Illegal " + board.getPieceAt(source) + " Move");
+            return false;
+        }
+        return true;
+    }
     /**
      * Return whether destination is diagonal to the source
      * @return
@@ -270,13 +280,31 @@ public class State {
     }
 
 
+    public boolean checkHorsePathIsClear(){
+        XiangqiCoordinateImp toCheck = source.LOrthagonalSpot(destination);
+        if(board.getPieceAt(toCheck).getPieceType() != XiangqiPieceType.NONE){
+            setMoveMessage("Can't Jump Over A Piece");
+            return false;
+        }
+
+        return true;
+    }
     /**
-     * Validate no skills in between given source and dest
+     * Validate no pieces in between given source and dest
      * @param source
      * @param dest
      * @return boolean
      */
     public boolean noPiecesInBetween(XiangqiCoordinateImp source, XiangqiCoordinateImp dest){
+        return numPiecesInBetween(source, dest) == 0;
+    }
+
+    /**
+     * Return the number of pieces between source and dest
+     */
+    public int numPiecesInBetween(XiangqiCoordinateImp source, XiangqiCoordinateImp dest){
+
+        int count = 0;
 
         Set<XiangqiCoordinateImp> occupied = board.getAllOccupiedLocations();
         for(XiangqiCoordinateImp o: occupied){
@@ -285,20 +313,22 @@ public class State {
             }
             if(source.isLocationBetween(o,dest)){
                 setMoveMessage("Can't Jump Over A Piece");
-                return false;
+                count++;
             }
         }
-        return true;
+        return count;
     }
-
 
     /**
      * Overloaded function with default source and dest
      * @return boolean
      */
-    public boolean noPiecesInBetween(){
-        return noPiecesInBetween(source, destination);
+    public int numPiecesInBetween(){
+        return numPiecesInBetween(source, destination);
     }
+
+
+
 
 
 }

@@ -1,6 +1,7 @@
 package xiangstudenthsadoyan.commonImplemenations;
 
 import xiangqi.XiangqiGameFactory;
+import xiangqi.common.XiangqiColor;
 import xiangqi.common.XiangqiGameVersion;
 
 import java.util.*;
@@ -22,11 +23,15 @@ public class ValidateFactory {
     private static Predicate<State> inGeneralsPalaceStateValidator = (State s) -> s.inPalace();
     private static Predicate<State> pieceAtSource = (State s) -> s.pieceAtSource();
     private static Predicate<State> moveOnOwnPiece = (State s) -> s.moveOnOwnPiece();
-    private static Predicate<State> noPiecesInBetween = (State s) -> s.noPiecesInBetween();
+    private static Predicate<State> noPiecesInBetween = (State s) -> s.numPiecesInBetween() == 0;
+    private static Predicate<State> onePieceInBetween = (State s) -> s.numPiecesInBetween() == 1;
     private static Predicate<State> checkInBounds = (State s) -> s.isInBounds();
     private static Predicate<State> distanceIsFour = (State s) -> s.getSource().distanceTo(s.getDestination()) == 4;
+    private static Predicate<State> distanceIsThree = (State s) -> s.getSource().distanceTo(s.getDestination()) == 3;
     private static Predicate<State> cantCrossRiver = (State s) -> s.notCrossingTheRiver();
     private static Predicate<State> isNotBackward = (State s) -> s.isNotBackward();
+    private static Predicate<State> isLShape = (State s) -> s.isLShape();
+    private static Predicate<State> HorsePathIsClear = (State s) -> s.checkHorsePathIsClear();
     //  private static Predicate<State> BetaInPalaceValidator = (State s) -> (c.getRank() == 1 || c.getRank() == 5) && c.getFile() >= 2 && c.getFile() <= 4;
 
 
@@ -136,6 +141,26 @@ public class ValidateFactory {
     public static List<Predicate<State>> makeDeltaValidators(XiangqiPieceImp piece, State s){
 
         List<Predicate<State>> validators = makeGammaValidators(piece, s);
+
+
+        switch (piece.getPieceType()){
+            case CANNON:
+                validators.add(orthogonalStateValidator);
+                validators.add(differentStateXiangqiCoordinateImpValidator);
+                if(s.getBoard().getPieceAt(s.getDestination()).getColor() != XiangqiColor.NONE){
+                    validators.add(onePieceInBetween);
+                } else {
+                    validators.add(noPiecesInBetween);
+                }
+                break;
+            case HORSE:
+                validators.add(distanceIsThree);
+                validators.add(isLShape);
+                validators.add(State::checkHorsePathIsClear);
+                break;
+
+        }
+
 
         return validators;
     }

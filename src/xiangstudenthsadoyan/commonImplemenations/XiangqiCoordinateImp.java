@@ -80,6 +80,31 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
 
     }
 
+    public boolean isLShape(XiangqiCoordinate c2){
+        return Math.abs(Math.abs(getRank() - c2.getRank()) - Math.abs(getFile() - c2.getFile())) == 1;
+
+    }
+
+    public XiangqiCoordinateImp LOrthagonalSpot (XiangqiCoordinateImp c2){
+        if(getRank() - c2.getRank() == 2){
+            return new XiangqiCoordinateImp(getRank()-1 , getFile());
+        }
+
+        if(getRank() - c2.getRank() == -2){
+            return new XiangqiCoordinateImp(getRank()+1 , getFile());
+        }
+
+        if(getFile() - c2.getFile() == 2){
+            return new XiangqiCoordinateImp(getRank() , getFile() -1);
+        }
+
+        if(getFile() - c2.getFile() == -2){
+            return new XiangqiCoordinateImp(getRank() , getFile()+1);
+        }
+
+        //Should never be reached
+        return null;
+    }
     /**
      * Returns whether given loc is between current point and dest
      * @param loc point to test
@@ -101,6 +126,9 @@ public class XiangqiCoordinateImp implements XiangqiCoordinate {
         int ex = 0;
         int tempRank = getRank();
         int tempFile = getFile();
+
+
+
         int i = 0;
         while(ex == 0) {
             tempRank += signY;

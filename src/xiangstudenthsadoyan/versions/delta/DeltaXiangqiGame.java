@@ -3,6 +3,7 @@ package xiangstudenthsadoyan.versions.delta;
 import xiangqi.common.*;
 import xiangstudenthsadoyan.commonImplemenations.*;
 
+import java.util.ArrayList;
 import java.util.concurrent.CompletionException;
 
 /**
@@ -14,6 +15,7 @@ public class DeltaXiangqiGame implements XiangqiGame {
     private XiangqiColor currentTurn;
     private State moveState;
     private GameLogic gameLogic;
+    private ArrayList<Board> moves = new ArrayList<>();
 
     public DeltaXiangqiGame(){
         board = Board.makeBoard(XiangqiGameVersion.DELTA_XQ);
@@ -48,9 +50,27 @@ public class DeltaXiangqiGame implements XiangqiGame {
         if(gameOver(moveState)) {
             return gameLogic.convertColorToMoveWin(currentTurn);
         }
+
+        moves.add(Board.copyConstructor(moveState.getBoard()));
+        if(checkForLossByRepetition()){
+            return gameLogic.convertColorToMoveWin(gameLogic.getOppositeColor(currentTurn));
+        }
         //Update current turn
         switchCurrentTurn();
         return MoveResult.OK;
+    }
+
+    public boolean checkForLossByRepetition(){
+        if(moves.size() < 9){
+            return false;
+        }
+
+        Board b1 = moves.get(moves.size() - 1);
+        Board b2 = moves.get(moves.size() - 5);
+        Board b3 = moves.get(moves.size() - 9);
+
+        return (b1.equals(b2) && b2.equals(b3));
+
     }
 
     /**
@@ -73,6 +93,8 @@ public class DeltaXiangqiGame implements XiangqiGame {
     public String getMoveMessage() {
         return gameLogic.getMoveMessage();
     }
+
+
 
     @Override
     public XiangqiPiece getPieceAt(XiangqiCoordinate where, XiangqiColor aspect) {
